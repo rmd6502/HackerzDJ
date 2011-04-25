@@ -10,7 +10,7 @@
 #import "WebRequestDelegate.h"
 
 @interface SearchAddController : UIViewController<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,WebRequestDelegate> {
-	NSMutableArray *results;
+	NSArray *results;
 }
 
 @property (nonatomic,assign) UILabel *instrs;

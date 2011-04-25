@@ -33,7 +33,7 @@
     [super viewDidLoad];
  	self.title = @"Add Youtube Videos";
 	instrs.font = [UIFont fontWithName:@"ChalkDuster" size:20.0];
-	results = [[NSMutableArray alloc] initWithCapacity:20];
+	results = nil;
 }
 
 /*
@@ -90,6 +90,9 @@
     }
     
 	// Configure the cell.
+	NSDictionary *result = [results objectAtIndex:indexPath.row];
+	cell.textLabel.text = [[result objectForKey:@"title"] objectForKey:@"$t"];
+	cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"]; 
 	
     return cell;
 }
@@ -153,8 +156,15 @@
 #pragma mark WebRequestDelegate
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
 	if (success) {
-		NSDictionary *feed = [[(WebRequest*)request urlData] objectFromJSONData];
-		LOG_DEBUG(@"feed %@", feed);
+		NSDictionary *jsondata = [[(WebRequest*)request urlData] objectFromJSONData];
+		NSDictionary *feed = [jsondata objectForKey:@"feed"];
+		//LOG_DEBUG(@"feed %@", feed);
+		if (results != nil) {
+			[results release];
+		}
+		results = [[feed objectForKey:@"entry"] retain];
+		LOG_DEBUG(@"results %d", [results count]);
+		[self.searchDisplayController.searchResultsTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 	} else {
 		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
 	}
