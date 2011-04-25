@@ -3,7 +3,7 @@
 //  hackerdjz
 //
 //  Created by Robert Diamond on 4/25/11.
-//  Copyright 2011 none. All rights reserved.
+//  Copyright 2011 Robert M. Diamond. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
