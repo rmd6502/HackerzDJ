@@ -22,6 +22,7 @@
 		83D8DA3A1365F4BC003653AF /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DA361365F4BC003653AF /* BaseRequest.m */; };
 		83D8DA3B1365F4BC003653AF /* WebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DA381365F4BC003653AF /* WebRequest.m */; };
 		83D8DA721365F679003653AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8DA711365F679003653AF /* SystemConfiguration.framework */; };
+		83D8DB5B13660A68003653AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DB5A13660A68003653AF /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		83D8DA3D1365F55E003653AF /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		83D8DA711365F679003653AF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		83D8DA951365F7A8003653AF /* common_configs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_configs.h; sourceTree = "<group>"; };
+		83D8DB5913660A68003653AF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		83D8DB5A13660A68003653AF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +76,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				83D8DB5913660A68003653AF /* JSONKit.h */,
+				83D8DB5A13660A68003653AF /* JSONKit.m */,
 				83D8DA3D1365F55E003653AF /* SynthesizeSingleton.h */,
 				83D8DA3C1365F4F1003653AF /* debugging.h */,
 				83D8DA351365F4BC003653AF /* BaseRequest.h */,
@@ -216,6 +221,7 @@
 				83D8DA341365F499003653AF /* Reachability.m in Sources */,
 				83D8DA3A1365F4BC003653AF /* BaseRequest.m in Sources */,
 				83D8DA3B1365F4BC003653AF /* WebRequest.m in Sources */,
+				83D8DB5B13660A68003653AF /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

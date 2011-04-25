@@ -7,7 +7,9 @@
 //
 
 #import "SearchAddController.h"
-
+#import "WebRequest.h"
+#import "Reachability.h"
+#import "JSONKit.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -31,6 +33,7 @@
     [super viewDidLoad];
  	self.title = @"Add Youtube Videos";
 	instrs.font = [UIFont fontWithName:@"ChalkDuster" size:20.0];
+	results = [[NSMutableArray alloc] initWithCapacity:20];
 }
 
 /*
@@ -52,6 +55,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[results release];
+	results = nil;
 }
 
 
@@ -70,7 +75,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return [results count];
 }
 
 
@@ -146,11 +151,27 @@
 
 #pragma mark -
 #pragma mark WebRequestDelegate
+- (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
+	if (success) {
+		NSDictionary *feed = [[(WebRequest*)request urlData] objectFromJSONData];
+		LOG_DEBUG(@"feed %@", feed);
+	} else {
+		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
+	}
+}
 
 #pragma mark -
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	NSString *query = [searchBar text];
+	NSString *query = [[searchBar text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	WebRequest *req = [[WebRequest alloc]init];
+	req.url = [NSString stringWithFormat:@"%@?%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query]];
+	req.delegate = self;
+	if ([[Reachability sharedReachability] hasConnection]) {
+		[[NSOperationQueue currentQueue] addOperation:req];
+	}
+	[req release];
 }
+
 
 @end
