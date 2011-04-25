@@ -144,4 +144,13 @@
 	 */
 }
 
+#pragma mark -
+#pragma mark WebRequestDelegate
+
+#pragma mark -
+#pragma mark UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	NSString *query = [searchBar text];
+}
+
 @end

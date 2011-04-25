@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebRequestDelegate.h"
 
-
-@interface SearchAddController : UIViewController<UITableViewDelegate,UITableViewDataSource> {
+@interface SearchAddController : UIViewController<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource> {
 
 }
 

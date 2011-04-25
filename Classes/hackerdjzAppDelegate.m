@@ -8,7 +8,7 @@
 
 #import "hackerdjzAppDelegate.h"
 #import "RootViewController.h"
-
+#import "Reachability.h"
 
 @implementation hackerdjzAppDelegate
 
@@ -22,7 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
+    (void)[Reachability sharedReachability];
+	
     // Add the navigation controller's view to the window and display.
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];

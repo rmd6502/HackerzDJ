@@ -19,9 +19,9 @@ void reachabilityCallBack(SCNetworkReachabilityRef target,
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Reachability);
 
-- (id)initWithURL:(NSString *)urlString {
+- (id)init {
 	if ((self = [super init]) != nil) {
-		testURL = [[NSURL alloc] initWithString:urlString];
+		testURL = [[NSURL alloc]initWithString:kHackerzDJBackend];
 		flags = kSCNetworkReachabilityFlagsReachable;
 		[self startNetworkThread];
 	}

@@ -24,7 +24,6 @@
 + (Reachability *)sharedReachability;
 + (BOOL)testReachability:(SCNetworkReachabilityFlags)flags_;
 
-- (id)initWithURL:(NSString *)urlString;
 - (void)startNetworkThread;
 - (void)reachabilityChanged:(NSNotification *)notif;
 @end
