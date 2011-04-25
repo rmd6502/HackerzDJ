@@ -51,6 +51,7 @@
 		83D8DA3C1365F4F1003653AF /* debugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debugging.h; sourceTree = "<group>"; };
 		83D8DA3D1365F55E003653AF /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		83D8DA711365F679003653AF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		83D8DA951365F7A8003653AF /* common_configs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_configs.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +88,7 @@
 				1D3623250D0F684500981E51 /* hackerdjzAppDelegate.m */,
 				83D8D9F71365EDE0003653AF /* SearchAddController.h */,
 				83D8D9F81365EDE0003653AF /* SearchAddController.m */,
+				83D8DA951365F7A8003653AF /* common_configs.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

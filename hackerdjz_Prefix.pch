@@ -12,4 +12,5 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
 #import "debugging.h"
+#import "common_configs.h"
 #endif

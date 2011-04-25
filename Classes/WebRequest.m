@@ -46,7 +46,7 @@ static BOOL g_isConnected = NO;
 }
 
 - (void)dealloc {
-	//PATCH_LOG_DEBUG(@"web request dealloc");
+	//LOG_DEBUG(@"web request dealloc");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.error = nil;
 	self.url = nil;
@@ -62,12 +62,12 @@ static BOOL g_isConnected = NO;
 
 - (BOOL)isReady {
 	BOOL ret = [super isReady] && (!__needsConnection || g_isConnected);
-	PATCH_LOG_DEBUG(@"self %@ needs connection %d isConnected %d ret %d", self, __needsConnection, g_isConnected, ret);
+	LOG_DEBUG(@"self %@ needs connection %d isConnected %d ret %d", self, __needsConnection, g_isConnected, ret);
 	return ret;
 }
 
 - (BOOL)isFinished {
-	PATCH_LOG_DEBUG(@"self %@ finished %d", self, isFinished);
+	LOG_DEBUG(@"self %@ finished %d", self, isFinished);
 	return isFinished;
 }
 
@@ -84,9 +84,9 @@ static BOOL g_isConnected = NO;
 		[self finishSuccess:NO];
 		return;
 	}
-	PATCH_LOG_DEBUG(@"URL: %@", self.url);
+	LOG_DEBUG(@"URL: %@", self.url);
 	NSURL *myUrl = [NSURL URLWithString:self.url]; 
-	PATCH_LOG_DEBUG(@"cookies for request %@: %@", myUrl, [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:myUrl]);
+	LOG_DEBUG(@"cookies for request %@: %@", myUrl, [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:myUrl]);
 	NSMutableURLRequest *fetchRequest = [NSMutableURLRequest requestWithURL:myUrl
 												  cachePolicy:NSURLRequestUseProtocolCachePolicy
 											  timeoutInterval:10.0f];
@@ -115,7 +115,7 @@ static BOOL g_isConnected = NO;
 		 ) {
 		[self invokeDelegateWithResult:succeeded];
 	}
-	PATCH_LOG_DEBUG(@"finishing, success %d", succeeded);
+	LOG_DEBUG(@"finishing, success %d", succeeded);
 	[self willChangeValueForKey:@"isFinished"];
 	[self willChangeValueForKey:@"isExecuting"];
 	self.isFinished = YES;
@@ -126,7 +126,7 @@ static BOOL g_isConnected = NO;
 #pragma mark -
 #pragma mark NSURLConnection
 - (void)connection:(NSURLConnection *)connection_ didFailWithError:(NSError *)error_ {
-	PATCH_LOG_DEBUG(@"failed: %@", error_);
+	LOG_DEBUG(@"failed: %@", error_);
 	self.error = error_;
 	//[self.urlData release];
 	self.urlData = nil;
@@ -146,12 +146,12 @@ static BOOL g_isConnected = NO;
 		[connection_ cancel];
 		return;
 	}
-	//PATCH_LOG_DEBUG(@"data %d bytes", [data length]);
+	//LOG_DEBUG(@"data %d bytes", [data length]);
 	[self.urlData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection_ {
-	PATCH_LOG_DEBUG(@"%@ finished loading", self);
+	LOG_DEBUG(@"%@ finished loading", self);
 	[self finishSuccess:YES];
 	
 	[connection_ release];
@@ -159,7 +159,7 @@ static BOOL g_isConnected = NO;
 }
 
 - (void)connection:(NSURLConnection *)connection_ didReceiveResponse:(NSURLResponse *)response {
-	PATCH_LOG_DEBUG(@"received response %@(%d)", 
+	LOG_DEBUG(@"received response %@(%d)", 
 					[(NSHTTPURLResponse *)response allHeaderFields],
 					[(NSHTTPURLResponse *)response statusCode]);
 	responseCode = [(NSHTTPURLResponse *)response statusCode];

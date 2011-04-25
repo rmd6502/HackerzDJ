@@ -8,7 +8,7 @@
  */
 
 #if !defined(NDEBUG)
-#define PATCH_LOG_DEBUG(x,...) NSLog(x,##__VA_ARGS__)
+#define LOG_DEBUG(x,...) NSLog(x,##__VA_ARGS__)
 #else
-#define PATCH_LOG_DEBUG(x,...)
+#define LOG_DEBUG(x,...)
 #endif

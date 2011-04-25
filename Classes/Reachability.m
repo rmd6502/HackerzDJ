@@ -45,7 +45,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Reachability);
 - (void)startNetworkThread {
 	NSURL *articleUrl = nil;
 	NSString *articleHost = [articleUrl host];
-	PATCH_LOG_DEBUG(@"article host %@", articleHost);
+	LOG_DEBUG(@"article host %@", articleHost);
 	reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [articleHost UTF8String]);
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kNotificationReachability object:nil];
 	if (!SCNetworkReachabilitySetCallback(reachability, reachabilityCallBack, nil)) {
@@ -78,7 +78,7 @@ void reachabilityCallBack(SCNetworkReachabilityRef target,
 	// Pool is not strictly necessary, but we may end up invoking from a thread other than main
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	PATCH_LOG_DEBUG(@"new flags: %d", flags);
+	LOG_DEBUG(@"new flags: %d", flags);
 	NSNotification *notif = [NSNotification notificationWithName:kNotificationReachability 
 														  object:[NSDictionary dictionaryWithObjectsAndKeys:
 																  [NSNumber numberWithInt:flags], kNotificationFlags, nil]];
