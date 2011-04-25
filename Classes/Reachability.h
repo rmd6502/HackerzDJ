@@ -19,10 +19,12 @@
 
 @property (readonly) SCNetworkReachabilityFlags reachabilityFlags;
 @property (readonly) BOOL hasConnection;
+@property (readonly) NSURL *testURL;
 
 + (Reachability *)sharedReachability;
 + (BOOL)testReachability:(SCNetworkReachabilityFlags)flags_;
 
+- (id)initWithURL:(NSString *)urlString;
 - (void)startNetworkThread;
 - (void)reachabilityChanged:(NSNotification *)notif;
 @end

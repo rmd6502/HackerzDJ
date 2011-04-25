@@ -15,11 +15,13 @@ void reachabilityCallBack(SCNetworkReachabilityRef target,
 
 @implementation Reachability
 @synthesize reachabilityFlags = flags;
+@synthesize testURL;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Reachability);
 
-- (id)init {
+- (id)initWithURL:(NSString *)urlString {
 	if ((self = [super init]) != nil) {
+		testURL = [[NSURL alloc] initWithString:urlString];
 		flags = kSCNetworkReachabilityFlagsReachable;
 		[self startNetworkThread];
 	}
@@ -31,6 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Reachability);
 	SCNetworkReachabilityUnscheduleFromRunLoop(reachability, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopDefaultMode);
 	CFRelease(reachability);
 	reachability = NULL;
+	[testURL release];
 	[super dealloc];
 }
 
@@ -43,10 +46,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Reachability);
 }
 
 - (void)startNetworkThread {
-	NSURL *articleUrl = nil;
-	NSString *articleHost = [articleUrl host];
-	LOG_DEBUG(@"article host %@", articleHost);
-	reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [articleHost UTF8String]);
+	NSString *testHost = [testURL host];
+	LOG_DEBUG(@"article host %@", testHost);
+	reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [testHost UTF8String]);
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kNotificationReachability object:nil];
 	if (!SCNetworkReachabilitySetCallback(reachability, reachabilityCallBack, nil)) {
 		NSLog(@"Could not set reachability callback!");
