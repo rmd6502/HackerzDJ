@@ -196,8 +196,28 @@
 	req.delegate = self;
 	if ([[Reachability sharedReachability] hasConnection]) {
 		[[NSOperationQueue currentQueue] addOperation:req];
+		self.searchDisplayController.searchResultsTableView.hidden = NO;
+	} else {
+		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Can't Search" message:@"You are not connected to the internet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[av show];
+		[av release];
 	}
+
 	[req release];
+}
+
+#pragma mark -
+#pragma mark UISearchDisplayDelegate
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+	return NO;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+	return NO;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
+	tableView.hidden = YES;
 }
 
 
