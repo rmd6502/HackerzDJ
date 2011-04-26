@@ -10,6 +10,7 @@
 #import "WebRequest.h"
 #import "Reachability.h"
 #import "JSONKit.h"
+#import "UIImageView+Cached.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -97,9 +98,7 @@
 	cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"];
 	NSString *imgUrl = [[[[result objectForKey:@"media$group"] objectForKey:@"media$thumbnail"] objectAtIndex:0] objectForKey:@"url"];
 	if (imgUrl != nil) {
-		NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgUrl]];
-		UIImage *img = [UIImage imageWithData:imgData];
-		cell.imageView.image = img;
+		[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
 	}
 	
     return cell;
