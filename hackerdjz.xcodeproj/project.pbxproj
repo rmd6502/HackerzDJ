@@ -25,6 +25,7 @@
 		83D8DB5B13660A68003653AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DB5A13660A68003653AF /* JSONKit.m */; };
 		83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DBED1366480F003653AF /* UIImageView+Cached.m */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
+		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		83D8DBED1366480F003653AF /* UIImageView+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Cached.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
+		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9CCDEA9713666069000D1502 /* phono.jpg */,
 				9CCDEA9413665A1D000D1502 /* ic_menu_block.png */,
 				83D8D8BD13630790003653AF /* ChalkDuster.ttf */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
@@ -213,6 +216,7 @@
 				83D8D8BE13630790003653AF /* ChalkDuster.ttf in Resources */,
 				83D8D9FB1365EDE0003653AF /* SearchAddController.xib in Resources */,
 				9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */,
+				9CCDEA9813666069000D1502 /* phono.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
