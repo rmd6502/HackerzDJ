@@ -181,6 +181,7 @@
 		}
 		results = [[feed objectForKey:@"entry"] retain];
 		LOG_DEBUG(@"results %d", [results count]);
+        self.searchDisplayController.searchResultsTableView.hidden = NO;
 		[self.searchDisplayController.searchResultsTableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 	} else {
 		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
@@ -199,6 +200,5 @@
 	}
 	[req release];
 }
-
 
 @end
