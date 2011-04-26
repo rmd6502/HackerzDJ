@@ -94,6 +94,7 @@
 	NSDictionary *result = [results objectAtIndex:indexPath.row];
 	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:14];
+		cell.textLabel.textAlignment = UITextAlignmentLeft;
 	cell.textLabel.text = [[result objectForKey:@"title"] objectForKey:@"$t"];
 	cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"];
 	NSString *imgUrl = [[[[result objectForKey:@"media$group"] objectForKey:@"media$thumbnail"] objectAtIndex:0] objectForKey:@"url"];

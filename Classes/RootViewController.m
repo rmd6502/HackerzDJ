@@ -10,6 +10,7 @@
 #import "SearchAddController.h"
 
 @implementation RootViewController
+@synthesize playlistTable;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -61,7 +62,10 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+	if ([playlistArray count] == 0) {
+		return 4;
+	}
+    return [playlistArray count];
 }
 
 
@@ -72,11 +76,23 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell.
-
+	cell.accessoryType = UITableViewCellAccessoryNone;
+	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:16];
+	cell.textLabel.textAlignment = UITextAlignmentCenter;
+	if ([playlistArray count] == 0) { 
+		if (indexPath.row == 2) {
+			cell.textLabel.text = @"Playlist is empty";
+		} else if (indexPath.row == 3) {
+			cell.textLabel.text = @"Click the + button above to add songs";
+		}
+	} else {
+		cell.textLabel.text = @"";
+	}
+	cell.detailTextLabel.text = @"";
     return cell;
 }
 
