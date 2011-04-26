@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
+#import "YouTubeAPIModel.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -94,6 +95,7 @@
 	NSDictionary *result = [results objectAtIndex:indexPath.row];
 	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:14];
+		cell.textLabel.textAlignment = UITextAlignmentLeft;
 	cell.textLabel.text = [[result objectForKey:@"title"] objectForKey:@"$t"];
 	cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"];
 	NSString *imgUrl = [[[[result objectForKey:@"media$group"] objectForKey:@"media$thumbnail"] objectAtIndex:0] objectForKey:@"url"];
@@ -191,14 +193,22 @@
 #pragma mark -
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	NSString *query = [[searchBar text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	WebRequest *req = [[WebRequest alloc]init];
-	req.url = [NSString stringWithFormat:@"%@?%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query]];
-	req.delegate = self;
-	if ([[Reachability sharedReachability] hasConnection]) {
-		[[NSOperationQueue currentQueue] addOperation:req];
-	}
-	[req release];
+	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] delegate:self];
 }
+
+#pragma mark -
+#pragma mark UISearchDisplayDelegate
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+	return NO;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+	return NO;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
+	tableView.hidden = YES;
+}
+
 
 @end

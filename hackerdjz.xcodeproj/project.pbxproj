@@ -24,6 +24,7 @@
 		83D8DA721365F679003653AF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8DA711365F679003653AF /* SystemConfiguration.framework */; };
 		83D8DB5B13660A68003653AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DB5A13660A68003653AF /* JSONKit.m */; };
 		83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DBED1366480F003653AF /* UIImageView+Cached.m */; };
+		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
@@ -33,7 +34,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* hackerdjzAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hackerdjzAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* hackerdjzAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hackerdjzAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* hackerdjz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackerdjz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* HackerzDJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerzDJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* hackerdjz_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hackerdjz_Prefix.pch; sourceTree = "<group>"; };
@@ -61,6 +62,8 @@
 		83D8DB5A13660A68003653AF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		83D8DBEC1366480F003653AF /* UIImageView+Cached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Cached.h"; sourceTree = "<group>"; };
 		83D8DBED1366480F003653AF /* UIImageView+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Cached.m"; sourceTree = "<group>"; };
+		83D8DD6F13674D3E003653AF /* YouTubeAPIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeAPIModel.h; sourceTree = "<group>"; };
+		83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeAPIModel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				83D8D9F71365EDE0003653AF /* SearchAddController.h */,
 				83D8D9F81365EDE0003653AF /* SearchAddController.m */,
 				83D8DA951365F7A8003653AF /* common_configs.h */,
+				83D8DD6F13674D3E003653AF /* YouTubeAPIModel.h */,
+				83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -112,7 +117,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* hackerdjz.app */,
+				1D6058910D05DD3D006BFB54 /* HackerzDJ.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,7 +186,7 @@
 			);
 			name = hackerdjz;
 			productName = hackerdjz;
-			productReference = 1D6058910D05DD3D006BFB54 /* hackerdjz.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* HackerzDJ.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -240,6 +245,7 @@
 				83D8DA3B1365F4BC003653AF /* WebRequest.m in Sources */,
 				83D8DB5B13660A68003653AF /* JSONKit.m in Sources */,
 				83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */,
+				83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +262,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = hackerdjz_Prefix.pch;
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
-				PRODUCT_NAME = hackerdjz;
+				PRODUCT_NAME = HackerzDJ;
 			};
 			name = Debug;
 		};
@@ -268,7 +274,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = hackerdjz_Prefix.pch;
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
-				PRODUCT_NAME = hackerdjz;
+				PRODUCT_NAME = HackerzDJ;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

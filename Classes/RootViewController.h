@@ -10,7 +10,11 @@
 
 
 @interface RootViewController : UIViewController {
+	// This is the model
+	NSArray *playlistArray;
 }
+
+@property (nonatomic,assign) IBOutlet UITableView *playlistTable;
 
 - (IBAction)performAddAndSearch:(id)sender;
 
