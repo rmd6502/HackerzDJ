@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
+#import "YouTubeAPIModel.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -192,20 +193,7 @@
 #pragma mark -
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	NSString *query = [[searchBar text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	WebRequest *req = [[WebRequest alloc]init];
-	req.url = [NSString stringWithFormat:@"%@?%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query]];
-	req.delegate = self;
-	if ([[Reachability sharedReachability] hasConnection]) {
-		[[NSOperationQueue currentQueue] addOperation:req];
-		self.searchDisplayController.searchResultsTableView.hidden = NO;
-	} else {
-		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Can't Search" message:@"You are not connected to the internet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[av show];
-		[av release];
-	}
-
-	[req release];
+	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] delegate:self];
 }
 
 #pragma mark -

@@ -30,5 +30,7 @@
 	<array>
 		<string>ChalkDuster.ttf</string>
 	</array>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 </dict>
 </plist>
