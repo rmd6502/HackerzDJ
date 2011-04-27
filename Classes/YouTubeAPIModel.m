@@ -24,7 +24,7 @@
 }
 + (BOOL)getPlaylistsWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
 	WebRequest *req = [[WebRequest alloc]init];
-    req.url = [NSString stringWithFormat:@"%@?%@",kYoutubeGetPlaylistsURL,@"hackerzdj",kYoutubeBodyCommon];
+    req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistsURL,@"hackerzdj"],kYoutubeBodyCommon];
     req.delegate = delegate;
     
     BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Get Playlists"];
@@ -34,7 +34,7 @@
 
 + (BOOL)getContentsOfPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	WebRequest *req = [[WebRequest alloc]init];
-    req.url = [NSString stringWithFormat:@"%@?%@",kYoutubeGetPlaylistContentsURL,playlistId,kYoutubeBodyCommon];
+    req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistContentsURL,playlistId],kYoutubeBodyCommon];
     req.delegate = delegate;
     
     BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Get Playlist Contents"];

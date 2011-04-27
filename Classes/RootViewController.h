@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebRequestDelegate.h"
 
-
-@interface RootViewController : UIViewController {
+@interface RootViewController : UIViewController<WebRequestDelegate> {
 	// This is the model
 	NSArray *playlistArray;
+	NSArray *results;
 }
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;
 
 - (IBAction)performAddAndSearch:(id)sender;
+- (void)sendPlaylistRequest;
 
 @end

@@ -8,6 +8,10 @@
 
 #import "RootViewController.h"
 #import "SearchAddController.h"
+#import "YouTubeAPIModel.h"
+#import "WebRequest.h"
+#import "JSONKit.h"
+#import "UIImageView+Cached.h"
 
 @implementation RootViewController
 @synthesize playlistTable;
@@ -19,6 +23,7 @@
     [super viewDidLoad];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	[YouTubeAPIModel getPlaylistsWithDelegate:self];
 }
 
 /*
@@ -89,10 +94,19 @@
 		} else if (indexPath.row == 3) {
 			cell.textLabel.text = @"Click the + button above to add songs";
 		}
+		cell.detailTextLabel.text = @"";
 	} else {
-		cell.textLabel.text = @"";
+		NSDictionary *result = [playlistArray objectAtIndex:indexPath.row];
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:14];
+		cell.textLabel.textAlignment = UITextAlignmentLeft;
+		cell.textLabel.text = [[result objectForKey:@"title"] objectForKey:@"$t"];
+		cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"];
+		NSString *imgUrl = [[[[result objectForKey:@"media$group"] objectForKey:@"media$thumbnail"] objectAtIndex:0] objectForKey:@"url"];
+		if (imgUrl != nil) {
+			[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
+		}		
 	}
-	cell.detailTextLabel.text = @"";
     return cell;
 }
 
@@ -174,9 +188,52 @@
 
 
 - (void)dealloc {
+	[results release];
+	[playlistArray release];
     [super dealloc];
 }
 
+#pragma mark -
+#pragma mark WebRequestDelegate
+- (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
+	if (success) {
+		NSDictionary *jsondata = [[(WebRequest*)request urlData] objectFromJSONData];
+		NSDictionary *feed = [jsondata objectForKey:@"feed"];
+		//LOG_DEBUG(@"feed %@", feed);
+		if (results != nil) {
+			[results release];
+		}
+		results = [[feed objectForKey:@"entry"] retain];
+		NSString *term = [[[feed objectForKey:@"category"] objectAtIndex:0] objectForKey:@"term"];
+		
+		LOG_DEBUG(@"results %d term %@", [results count],term);
+		if ([term rangeOfString:@"#playlistLink"].location != NSNotFound) {
+			// This is step 1, the list of playlists.  Step two is to get the contents of the most recent playlist
+			[self sendPlaylistRequest];
+		} else {
+			if (playlistArray != nil) {
+				[playlistArray release];
+			}
+			playlistArray = results;
+			results = nil;
+			[self.playlistTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+		}
+	} else {
+		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
+	}
+}
+
+- (void)sendPlaylistRequest {
+	NSArray *sorted = [results sortedArrayUsingComparator:^(id obj1, id obj2) {
+		NSString *p1 = [[(NSDictionary *)obj1 objectForKey:@"published"] objectForKey:@"$t"];
+		NSString *p2 = [[(NSDictionary *)obj2 objectForKey:@"published"] objectForKey:@"$t"];
+		return [p2 compare:p1];
+	}];
+	NSDictionary *playlist = [sorted objectAtIndex:0];
+	LOG_DEBUG(@"playlist %@", playlist);
+	NSString *playlistID = [[playlist objectForKey:@"yt$playlistId"] objectForKey:@"$t"];
+	[YouTubeAPIModel getContentsOfPlaylist:playlistID delegate:self];
+}
 
 @end
 
