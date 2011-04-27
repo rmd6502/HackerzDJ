@@ -16,6 +16,7 @@
 }
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;
+@property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)performAddAndSearch:(id)sender;
 - (void)sendPlaylistRequest;

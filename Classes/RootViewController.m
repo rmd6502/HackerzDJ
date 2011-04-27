@@ -15,6 +15,7 @@
 
 @implementation RootViewController
 @synthesize playlistTable;
+@synthesize spinner;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -24,6 +25,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	[YouTubeAPIModel getPlaylistsWithDelegate:self];
+	spinner.hidden = NO;
 }
 
 /*
@@ -211,6 +213,7 @@
 			// This is step 1, the list of playlists.  Step two is to get the contents of the most recent playlist
 			[self sendPlaylistRequest];
 		} else {
+			spinner.hidden = YES;
 			if (playlistArray != nil) {
 				[playlistArray release];
 			}
@@ -219,6 +222,7 @@
 			[self.playlistTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 		}
 	} else {
+		spinner.hidden = YES;
 		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
 	}
 }
