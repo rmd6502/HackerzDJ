@@ -13,6 +13,7 @@
 
 }
 
++ (BOOL)addToQueue:(BaseRequest *)request description:(NSString *)description;
 + (BOOL)getPlaylistsWithDelegate:(id<WebRequestDelegate,NSObject>)delegate;
 + (BOOL)getContentsOfPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate;
 + (BOOL)videoSearch:(NSString *)search delegate:(id<WebRequestDelegate,NSObject>)delegate;
