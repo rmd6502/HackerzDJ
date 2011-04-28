@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		83AC785F1369B01F00875C04 /* YoutubeClientAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */; };
 		83D8D8BE13630790003653AF /* ChalkDuster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83D8D8BD13630790003653AF /* ChalkDuster.ttf */; };
 		83D8D9FA1365EDE0003653AF /* SearchAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8D9F81365EDE0003653AF /* SearchAddController.m */; };
 		83D8D9FB1365EDE0003653AF /* SearchAddController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83D8D9F91365EDE0003653AF /* SearchAddController.xib */; };
@@ -25,84 +26,10 @@
 		83D8DB5B13660A68003653AF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DB5A13660A68003653AF /* JSONKit.m */; };
 		83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DBED1366480F003653AF /* UIImageView+Cached.m */; };
 		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
-		83D9ADAC1368CCB000B9557E /* libMPOAuthMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83D8DE851368A585003653AF /* libMPOAuthMobile.a */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		83D8DE801368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = MPOAuthMobile;
-		};
-		83D8DE821368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CB36C3C21124D425005CF675;
-			remoteInfo = "MPOAuthMobile+Tests";
-		};
-		83D8DE841368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBD262D5111E412E0003486C;
-			remoteInfo = libMPOAuth;
-		};
-		83D8DE861368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBD26517111F4B180003486C;
-			remoteInfo = MPOAuth;
-		};
-		83D8DE881368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBD26484111F46580003486C;
-			remoteInfo = MPOAuthTestApp;
-		};
-		83D8DE8A1368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBCF41A511240C5600E90EE8;
-			remoteInfo = "Mobile Unit Tests";
-		};
-		83D8DE8C1368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CBCF41D811240EF300E90EE8;
-			remoteInfo = "Unit Tests";
-		};
-		83D8DE8E1368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CB36C2FB1124CE51005CF675;
-			remoteInfo = libMPOAuthMac;
-		};
-		83D8DE901368A585003653AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CB36C3181124CE8F005CF675;
-			remoteInfo = "Unit Tests Static Library";
-		};
-		83D9ADA01368CC2000B9557E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = CBD262D4111E412E0003486C;
-			remoteInfo = libMPOAuth;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -117,6 +44,8 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83AC785D1369B01F00875C04 /* YoutubeClientAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeClientAuth.h; sourceTree = "<group>"; };
+		83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeClientAuth.m; sourceTree = "<group>"; };
 		83D8D8BD13630790003653AF /* ChalkDuster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChalkDuster.ttf; sourceTree = "<group>"; };
 		83D8D9F71365EDE0003653AF /* SearchAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAddController.h; sourceTree = "<group>"; };
 		83D8D9F81365EDE0003653AF /* SearchAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAddController.m; sourceTree = "<group>"; };
@@ -138,7 +67,6 @@
 		83D8DBED1366480F003653AF /* UIImageView+Cached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Cached.m"; sourceTree = "<group>"; };
 		83D8DD6F13674D3E003653AF /* YouTubeAPIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeAPIModel.h; sourceTree = "<group>"; };
 		83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeAPIModel.m; sourceTree = "<group>"; };
-		83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MPOAuth.xcodeproj; path = MPOAuth/MPOAuth.xcodeproj; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
@@ -154,7 +82,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				83D8DA721365F679003653AF /* SystemConfiguration.framework in Frameworks */,
-				83D9ADAC1368CCB000B9557E /* libMPOAuthMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +113,8 @@
 				83D8DA951365F7A8003653AF /* common_configs.h */,
 				83D8DD6F13674D3E003653AF /* YouTubeAPIModel.h */,
 				83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */,
+				83AC785D1369B01F00875C04 /* YoutubeClientAuth.h */,
+				83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -237,29 +166,12 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */,
 				83D8DA711365F679003653AF /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		83D8DE6E1368A585003653AF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				83D8DE811368A585003653AF /* MPOAuthMobile.app */,
-				83D8DE831368A585003653AF /* MPOAuthMobile.app */,
-				83D8DE851368A585003653AF /* libMPOAuthMobile.a */,
-				83D8DE871368A585003653AF /* MPOAuth */,
-				83D8DE891368A585003653AF /* MPOAuthTestApp.app */,
-				83D8DE8B1368A585003653AF /* Mobile Unit Tests.octest */,
-				83D8DE8D1368A585003653AF /* Unit Tests.octest */,
-				83D8DE8F1368A585003653AF /* libMPOAuth_s.a */,
-				83D8DE911368A585003653AF /* Unit Tests.octest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +188,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				83D9ADA11368CC2000B9557E /* PBXTargetDependency */,
 			);
 			name = hackerdjz;
 			productName = hackerdjz;
@@ -301,84 +212,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 83D8DE6E1368A585003653AF /* Products */;
-					ProjectRef = 83D8DE6D1368A585003653AF /* MPOAuth.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* hackerdjz */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		83D8DE811368A585003653AF /* MPOAuthMobile.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MPOAuthMobile.app;
-			remoteRef = 83D8DE801368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE831368A585003653AF /* MPOAuthMobile.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MPOAuthMobile.app;
-			remoteRef = 83D8DE821368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE851368A585003653AF /* libMPOAuthMobile.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMPOAuthMobile.a;
-			remoteRef = 83D8DE841368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE871368A585003653AF /* MPOAuth */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MPOAuth;
-			remoteRef = 83D8DE861368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE891368A585003653AF /* MPOAuthTestApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = MPOAuthTestApp.app;
-			remoteRef = 83D8DE881368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE8B1368A585003653AF /* Mobile Unit Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Mobile Unit Tests.octest";
-			remoteRef = 83D8DE8A1368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE8D1368A585003653AF /* Unit Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Unit Tests.octest";
-			remoteRef = 83D8DE8C1368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE8F1368A585003653AF /* libMPOAuth_s.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libMPOAuth_s.a;
-			remoteRef = 83D8DE8E1368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		83D8DE911368A585003653AF /* Unit Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Unit Tests.octest";
-			remoteRef = 83D8DE901368A585003653AF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -412,18 +251,11 @@
 				83D8DB5B13660A68003653AF /* JSONKit.m in Sources */,
 				83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */,
 				83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */,
+				83AC785F1369B01F00875C04 /* YoutubeClientAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		83D9ADA11368CC2000B9557E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libMPOAuth;
-			targetProxy = 83D9ADA01368CC2000B9557E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -435,7 +267,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = hackerdjz_Prefix.pch;
-				HEADER_SEARCH_PATHS = "MPOauth/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
 				PRODUCT_NAME = HackerzDJ;
 			};
@@ -448,7 +280,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = hackerdjz_Prefix.pch;
-				HEADER_SEARCH_PATHS = "MPOauth/**";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
 				PRODUCT_NAME = HackerzDJ;
 				VALIDATE_PRODUCT = YES;

@@ -9,6 +9,7 @@
 #import "YouTubeAPIModel.h"
 #import "Reachability.h"
 #import "WebRequest.h"
+#import "YoutubeClientAuth.h"
 
 @implementation YouTubeAPIModel
 + (BOOL)addToQueue:(BaseRequest *)request description:(NSString *)description {
@@ -54,8 +55,19 @@
 	return ret;
 }
 
-+ (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
-	return NO;
++ (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId authKey:(NSString *)authKey delegate:(id<WebRequestDelegate,NSObject>)delegate {
+	BOOL ret = YES;
+	
+	return ret;
+}
+
++ (BOOL)clientAuthWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
+	YoutubeClientAuth *req = [[YoutubeClientAuth alloc]init];
+	req.target = delegate;
+	req.selector = @selector(clientAuthComplete:authKey:);
+	BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Add to Playlist"];
+    [req release];
+    return ret;
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
 #import "YouTubeAPIModel.h"
+#import "YoutubeClientAuth.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -63,6 +64,7 @@
 
 
 - (void)dealloc {
+	[authKey release];
     [super dealloc];
 }
 
@@ -151,14 +153,19 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	//NSDictionary *result = [results objectAtIndex:indexPath.row];
+	if (authKey == nil) {
+		YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
+		req.target = self;
+		req.tselector = @selector(clientAuthComplete:authKey:);
+		[YouTubeAPIModel addToQueue:req description:@"Authenticate"];
+	} else {
+		[self doAddVideo];
+	}
+
+}
+
+- (void)doAddVideo {
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -210,5 +217,9 @@
 	tableView.hidden = YES;
 }
 
+- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ {
+	authKey = [authKey_ copy];
+	[self doAddVideo];
+}
 
 @end

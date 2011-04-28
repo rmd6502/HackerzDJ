@@ -11,8 +11,11 @@
 
 @interface SearchAddController : UIViewController<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,WebRequestDelegate> {
 	NSArray *results;
+	NSString *authKey;
 }
 
 @property (nonatomic,assign) UILabel *instrs;
 
+- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey;
+- (void)doAddVideo;
 @end

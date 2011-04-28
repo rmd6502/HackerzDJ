@@ -28,9 +28,11 @@ static BOOL g_isConnected = NO;
 @synthesize urlData;
 @synthesize url;
 @synthesize httpBody;
+@synthesize httpMethod;
 @synthesize contentType;
 @synthesize needsConnection = __needsConnection;
 @synthesize responseCode;
+@synthesize headers;
 
 #pragma mark -
 #pragma mark Life Cycle
@@ -92,17 +94,28 @@ static BOOL g_isConnected = NO;
 											  timeoutInterval:10.0f];
 	fetchRequest.HTTPMethod = httpMethod;
 	if (self.httpBody != nil) {
+		LOG_DEBUG(@"body: %@", httpBody);
 		fetchRequest.HTTPBody = httpBody;
 	}
 	
+	//if ([fetchRequest.HTTPMethod compare:@"POST" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+	//	[fetchRequest addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	//}
+	
 	if (self.contentType) {
+		LOG_DEBUG(@"content-type: %@", self.contentType);
 		[fetchRequest setValue:self.contentType forHTTPHeaderField:@"Content-Type"];
+	}
+	
+	for (NSString *header in headers) {
+		[fetchRequest addValue:[headers objectForKey:header] forHTTPHeaderField:header];
 	}
 	
 	self.urlData = [NSMutableData dataWithCapacity:10000];
 	[self willChangeValueForKey:@"isExecuting"];
 	self.isFinished = NO;
 	[self didChangeValueForKey:@"isExecuting"];
+	
 	// warning: this retains self!
 	myConnection = [[NSURLConnection alloc] initWithRequest:fetchRequest delegate:self];	//conn:1 self:3
 	[myConnection start];	//2

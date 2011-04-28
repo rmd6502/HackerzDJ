@@ -14,7 +14,6 @@
 @interface WebRequest : BaseRequest {
 	BOOL __needsConnection;
 	NSURLConnection *myConnection;
-	NSString *httpMethod;
 }
 
 @property (nonatomic, retain) NSMutableData *urlData;
@@ -22,8 +21,10 @@
 @property (nonatomic,copy) NSString *url;
 @property (nonatomic,copy) NSData *httpBody;
 @property (nonatomic, copy) NSString *contentType;
+@property (nonatomic, copy) NSString *httpMethod;
 @property (readonly) BOOL needsConnection;
 @property (readonly) NSInteger responseCode;
+@property (nonatomic, assign) NSDictionary *headers;
 
 // DON'T invoke super when you override this!
 - (void)main;

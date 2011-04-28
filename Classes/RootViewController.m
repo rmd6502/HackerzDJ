@@ -12,11 +12,6 @@
 #import "WebRequest.h"
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
-#import "MPOAuthMobileAppDelegate.h"
-#import "MPOAuthAPI.h"
-#import "MPOAuthAuthenticationMethodOAuth.h"
-#import "MPURLRequestParameter.h"
-
 
 @implementation RootViewController
 @synthesize playlistTable;
