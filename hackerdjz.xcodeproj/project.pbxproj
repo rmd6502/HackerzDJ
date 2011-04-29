@@ -46,6 +46,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83AC785D1369B01F00875C04 /* YoutubeClientAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeClientAuth.h; sourceTree = "<group>"; };
 		83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeClientAuth.m; sourceTree = "<group>"; };
+		83AC7B53136B009700875C04 /* uncommon_configs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uncommon_configs.h; sourceTree = "<group>"; };
 		83D8D8BD13630790003653AF /* ChalkDuster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChalkDuster.ttf; sourceTree = "<group>"; };
 		83D8D9F71365EDE0003653AF /* SearchAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAddController.h; sourceTree = "<group>"; };
 		83D8D9F81365EDE0003653AF /* SearchAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchAddController.m; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 				83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */,
 				83AC785D1369B01F00875C04 /* YoutubeClientAuth.h */,
 				83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */,
+				83AC7B53136B009700875C04 /* uncommon_configs.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
