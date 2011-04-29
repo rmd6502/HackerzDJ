@@ -16,7 +16,7 @@
 - (id)init {
 	if ((self = [super init]) != nil) {
 		self.url = kClientAuthURL;
-		self.httpBody = [NSString stringWithFormat:kClientAuthBody,kClientAuthUsername,kClientAuthPassword];
+		self.httpBody = [[NSString stringWithFormat:kClientAuthBody,kClientAuthUsername,kClientAuthPassword] dataUsingEncoding:NSASCIIStringEncoding];
 		self.httpMethod = @"POST";
 		self.delegate = self;
 		self.contentType = @"application/x-www-form-urlencoded";
@@ -31,6 +31,13 @@
 	if (success) {
 		NSString *keys = [[NSString alloc] initWithData:[(WebRequest *)request urlData] encoding:NSUTF8StringEncoding];
 		LOG_DEBUG(@"keys %@", keys);
+        for (NSString *comps in [keys componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
+            NSArray *vals = [comps componentsSeparatedByString:@"="];
+            if ([[vals objectAtIndex:0] caseInsensitiveCompare:@"Auth"] == NSOrderedSame) {
+                authKey = [vals objectAtIndex:1];
+                break;
+            }
+        }
 		[keys release];
 	}
 	if ([target respondsToSelector:tselector]) {
