@@ -12,6 +12,7 @@
 @synthesize delegate;
 @synthesize error;
 @synthesize selector;
+@synthesize userData;
 
 /*
 // Only override drawRect: if you perform custom drawing.

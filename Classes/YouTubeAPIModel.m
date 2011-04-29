@@ -58,14 +58,27 @@
 + (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId authKey:(NSString *)authKey delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	BOOL ret = YES;
 	
+	WebRequest *req = [[WebRequest alloc]init];
+	req.delegate = delegate;
+	req.selector = @selector(videoAdded:);
+	req.url = [NSString stringWithFormat:kYoutubeGetPlaylistContentsURL, videoID];
+	req.httpMethod = @"POST";
+	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
+				   [NSString stringWithFormat:@"AuthSub token=\"%@\"", authKey], @"Authorization",
+				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
+				   @"application/atom+xml", @"Content-Type",
+				   @"2", @"GData-Version",
+				   nil];
+	req.httpBody = [[NSString stringWithFormat:kYoutubeEntryAtom, videoID] dataUsingEncoding:NSASCIIStringEncoding];
+	ret = [YouTubeAPIModel addToQueue:req description:@"Add to Playlist"];
 	return ret;
 }
 
 + (BOOL)clientAuthWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
 	YoutubeClientAuth *req = [[YoutubeClientAuth alloc]init];
 	req.target = delegate;
-	req.selector = @selector(clientAuthComplete:authKey:);
-	BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Add to Playlist"];
+	req.tselector = @selector(clientAuthComplete:authKey:userData:);
+	BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Authenticate"];
     [req release];
     return ret;
 }

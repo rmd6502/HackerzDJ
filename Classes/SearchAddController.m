@@ -153,23 +153,26 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//NSDictionary *result = [results objectAtIndex:indexPath.row];
+	NSDictionary *result = [results objectAtIndex:indexPath.row];
 	if (authKey == nil) {
 		YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
 		req.target = self;
-		req.tselector = @selector(clientAuthComplete:authKey:);
+		req.tselector = @selector(clientAuthComplete:authKey:userData:);
+		req.userData = result;
 		[YouTubeAPIModel addToQueue:req description:@"Authenticate"];
 	} else {
-		[self doAddVideo];
+		[self doAddVideo:result];
 	}
 
 }
 
-- (void)doAddVideo {
+- (void)doAddVideo:(NSString *)videoID playList:(NSString *)playlistID {
+	[YouTubeAPIModel addVideo:videoID toPlaylist:playlistID authKey:authKey delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	/*
+	 NSDictionary *result = [results objectAtIndex:indexPath.row];
 	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
@@ -217,9 +220,12 @@
 	tableView.hidden = YES;
 }
 
-- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ {
+- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {
 	authKey = [authKey_ copy];
 	[self doAddVideo];
+}
+
+- (void)videoAdded:(NSNumber *)success {
 }
 
 @end

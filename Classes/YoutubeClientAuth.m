@@ -6,6 +6,7 @@
 //  Copyright 2011 none. All rights reserved.
 //
 
+#import <objc/objc.h>
 #import "YoutubeClientAuth.h"
 
 
@@ -41,7 +42,8 @@
 		[keys release];
 	}
 	if ([target respondsToSelector:tselector]) {
-		[target performSelector:tselector withObject:[NSNumber numberWithBool:success] withObject:authKey];
+		objc_msgSend(target, tselector, [NSNumber numberWithBool:success], authKey, self.userData);
+		//[target performSelector:tselector withObject:[NSNumber numberWithBool:success] withObject:authKey];
 	}
 }
 

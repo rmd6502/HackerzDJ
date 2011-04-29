@@ -16,6 +16,7 @@
 
 @property (nonatomic,assign) UILabel *instrs;
 
-- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey;
-- (void)doAddVideo;
+- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey userData:(NSObject *)userData;
+- (void)doAddVideo:(NSString *)videoID playList:(NSString *)playlistID;
+- (void)videoAdded:(NSNumber *)success;
 @end
