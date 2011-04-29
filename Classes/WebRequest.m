@@ -107,7 +107,7 @@ static BOOL g_isConnected = NO;
 		[fetchRequest setValue:self.contentType forHTTPHeaderField:@"Content-Type"];
 	}
 	
-	for (NSString *header in headers) {
+	for (NSString *header in [headers allKeys]) {
 		[fetchRequest addValue:[headers objectForKey:header] forHTTPHeaderField:header];
 	}
 	

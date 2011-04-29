@@ -16,6 +16,7 @@
 
 @implementation SearchAddController
 @synthesize instrs;
+@synthesize playlistId;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -166,8 +167,10 @@
 
 }
 
-- (void)doAddVideo:(NSString *)videoID playList:(NSString *)playlistID {
-	[YouTubeAPIModel addVideo:videoID toPlaylist:playlistID authKey:authKey delegate:self];
+- (void)doAddVideo:(NSDictionary *)videoData {
+	LOG_DEBUG(@"here");
+	NSString *videoID = [[[videoData objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"];
+	[YouTubeAPIModel addVideo:videoID toPlaylist:playlistId authKey:authKey delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -222,10 +225,11 @@
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {
 	authKey = [authKey_ copy];
-	[self doAddVideo];
+	[self doAddVideo:(NSDictionary *)userData];
 }
 
-- (void)videoAdded:(NSNumber *)success {
+- (void)videoAdded:(WebRequest *)request result:(BOOL)success {
+	LOG_DEBUG(@"video add %@", [NSString stringWithCString:(const char *)[request.urlData bytes] encoding:NSASCIIStringEncoding]);
 }
 
 @end

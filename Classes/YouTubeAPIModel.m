@@ -60,7 +60,7 @@
 	
 	WebRequest *req = [[WebRequest alloc]init];
 	req.delegate = delegate;
-	req.selector = @selector(videoAdded:);
+	req.selector = @selector(videoAdded:result:);
 	req.url = [NSString stringWithFormat:kYoutubeGetPlaylistContentsURL, videoID];
 	req.httpMethod = @"POST";
 	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:

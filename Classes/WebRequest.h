@@ -24,7 +24,7 @@
 @property (nonatomic, copy) NSString *httpMethod;
 @property (readonly) BOOL needsConnection;
 @property (readonly) NSInteger responseCode;
-@property (nonatomic, assign) NSDictionary *headers;
+@property (nonatomic, copy) NSDictionary *headers;
 
 // DON'T invoke super when you override this!
 - (void)main;

@@ -13,6 +13,7 @@
 	// This is the model
 	NSArray *playlistArray;
 	NSArray *results;
+	NSString *playlistId;
 }
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;

@@ -168,9 +168,12 @@
 }
 
 - (IBAction)performAddAndSearch:(id)sender {
-	SearchAddController *sac = [[SearchAddController alloc] initWithNibName:nil bundle:nil];
-	[self.navigationController pushViewController:sac animated:YES];
-	[sac release];
+	if (playlistId != nil) {
+		SearchAddController *sac = [[SearchAddController alloc] initWithNibName:nil bundle:nil];
+		sac.playlistId = playlistId;
+		[self.navigationController pushViewController:sac animated:YES];
+		[sac release];
+	}
 }
 
 #pragma mark -
@@ -192,6 +195,7 @@
 - (void)dealloc {
 	[results release];
 	[playlistArray release];
+	[playlistId release];
     [super dealloc];
 }
 
@@ -234,9 +238,10 @@
 		return [p2 compare:p1];
 	}];
 	NSDictionary *playlist = [sorted objectAtIndex:0];
-	LOG_DEBUG(@"playlist %@", playlist);
-	NSString *playlistID = [[playlist objectForKey:@"yt$playlistId"] objectForKey:@"$t"];
-	[YouTubeAPIModel getContentsOfPlaylist:playlistID delegate:self];
+	
+	playlistId = [[[playlist objectForKey:@"yt$playlistId"] objectForKey:@"$t"] copy];
+	LOG_DEBUG(@"playlist %@", playlistId);
+	[YouTubeAPIModel getContentsOfPlaylist:playlistId delegate:self];
 }
 
 @end
