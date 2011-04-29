@@ -1,1 +1,8 @@
 this project may require xcode 4 - there seems to be a problem with some of the XIBs.
+
+You'll need to create your own "uncommon_configs.h", containing the following definitions:
+
+#define kYoutubeBodyCommon  @"v=2&alt=json&key=<youtube API key>"
+#define kYoutubeDevKey      @"<youtube API key again>"
+#define kClientAuthUsername @"<youtube username>"
+#define kClientAuthPassword @"<youtube password>"
