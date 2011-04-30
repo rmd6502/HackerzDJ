@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isRefreshing = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	//[YouTubeAPIModel getPlaylistsWithDelegate:self];
@@ -31,8 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	spinner.hidden = NO;
-	[YouTubeAPIModel getPlaylistsWithDelegate:self];
+	[self refresh:nil];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController 
@@ -40,8 +40,7 @@
 					animated:(BOOL)animated {
 	//[super navigationController:navigationController willShowViewController:viewController animated:animated];
 	if (viewController == self) {
-		spinner.hidden = NO;
-		[YouTubeAPIModel getPlaylistsWithDelegate:self];
+		[self refresh:nil];
 	}
 }
 
@@ -214,6 +213,7 @@
 #pragma mark -
 #pragma mark WebRequestDelegate
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
+    isRefreshing = NO;
 	if (success) {
 		NSDictionary *jsondata = [[(WebRequest*)request urlData] objectFromJSONData];
 		NSDictionary *feed = [jsondata objectForKey:@"feed"];
@@ -256,5 +256,13 @@
 	[YouTubeAPIModel getContentsOfPlaylist:playlistId delegate:self];
 }
 
+- (IBAction)refresh:(id)sender {
+    @synchronized(self) {
+        if (isRefreshing) return;
+        isRefreshing = YES;
+    }
+    spinner.hidden = NO;
+    [YouTubeAPIModel getPlaylistsWithDelegate:self];
+}
 @end
 

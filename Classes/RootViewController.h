@@ -14,11 +14,14 @@
 	NSArray *playlistArray;
 	NSArray *results;
 	NSString *playlistId;
+    
+    BOOL isRefreshing;
 }
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;
 @property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
 
+- (IBAction)refresh:(id)sender;
 - (IBAction)performAddAndSearch:(id)sender;
 - (void)sendPlaylistRequest;
 

@@ -91,7 +91,7 @@ static BOOL g_isConnected = NO;
 	LOG_DEBUG(@"cookies for request %@: %@", myUrl, [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:myUrl]);
 	NSMutableURLRequest *fetchRequest = [NSMutableURLRequest requestWithURL:myUrl
 												  cachePolicy:NSURLRequestReloadIgnoringCacheData
-											  timeoutInterval:10.0f];
+											  timeoutInterval:600.0f];
 	fetchRequest.HTTPMethod = httpMethod;
 	if (self.httpBody != nil) {
 		LOG_DEBUG(@"body: %@", [NSString stringWithCString:[httpBody bytes] encoding:NSASCIIStringEncoding]);
