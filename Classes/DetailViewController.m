@@ -16,6 +16,7 @@
 @synthesize description;
 @synthesize image;
 @synthesize categories;
+@synthesize ratings;
 
 - (IBAction)playVideo:(id)sender {
     
@@ -81,6 +82,7 @@
         [image setImage:[UIImage imageNamed:@"no_image"]];
     }
     categories.text = category_string;
+    ratings.rating = [[[details objectForKey:@"gd$rating"] objectForKey:@"average"] floatValue];
 }
 /*
 // Override to allow orientations other than the default portrait orientation.

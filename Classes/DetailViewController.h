@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RatingsView.h"
 
 @interface DetailViewController : UIViewController {
 
@@ -19,6 +19,8 @@
 @property (nonatomic,assign) IBOutlet UILabel *description;
 @property (nonatomic,assign) IBOutlet UIImageView *image;
 @property (nonatomic,assign) IBOutlet UILabel *categories;
+@property (nonatomic,assign) IBOutlet RatingsView *ratings;
+
 
 - (IBAction)playVideo:(id)sender;
 - (IBAction)addToPlaylist:(id)sender;

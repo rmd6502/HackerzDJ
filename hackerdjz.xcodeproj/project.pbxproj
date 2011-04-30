@@ -32,6 +32,8 @@
 		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
 		9C64CB5C136C9647000C1F51 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C64CB5B136C9647000C1F51 /* no_image.png */; };
+		9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */; };
+		9C8FC47E136C9AD100A8DEF7 /* RatingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
@@ -82,6 +84,9 @@
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
 		9C64CB5B136C9647000C1F51 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
+		9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_point_star.png; sourceTree = "<group>"; };
+		9C8FC47C136C9AD100A8DEF7 /* RatingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsView.h; sourceTree = "<group>"; };
+		9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsView.m; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
 		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +138,8 @@
 				83AC7BF9136B29B000875C04 /* CaptchaController.m */,
 				83AC7CA3136BB6D600875C04 /* DetailViewController.h */,
 				83AC7CA4136BB6D600875C04 /* DetailViewController.m */,
+				9C8FC47C136C9AD100A8DEF7 /* RatingsView.h */,
+				9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */,
 				9C64CB5B136C9647000C1F51 /* no_image.png */,
 				9C205CC713666138008E4D05 /* entertext.png */,
 				9CCDEA9713666069000D1502 /* phono.jpg */,
@@ -255,6 +263,7 @@
 				83AC7BFC136B29B000875C04 /* CaptchaController.xib in Resources */,
 				83AC7CA7136BB6D600875C04 /* DetailViewController.xib in Resources */,
 				9C64CB5C136C9647000C1F51 /* no_image.png in Resources */,
+				9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +287,7 @@
 				83AC785F1369B01F00875C04 /* YoutubeClientAuth.m in Sources */,
 				83AC7BFB136B29B000875C04 /* CaptchaController.m in Sources */,
 				83AC7CA6136BB6D600875C04 /* DetailViewController.m in Sources */,
+				9C8FC47E136C9AD100A8DEF7 /* RatingsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
