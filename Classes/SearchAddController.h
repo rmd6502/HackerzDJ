@@ -17,6 +17,7 @@
 
 @property (nonatomic,assign) UILabel *instrs;
 @property (nonatomic,copy)   NSString *playlistId;
+@property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey userData:(NSObject *)userData;
 - (void)doAddVideo:(NSDictionary *)videoData;

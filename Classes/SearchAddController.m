@@ -18,6 +18,7 @@
 @implementation SearchAddController
 @synthesize instrs;
 @synthesize playlistId;
+@synthesize spinner;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -188,6 +189,7 @@
 #pragma mark -
 #pragma mark WebRequestDelegate
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
+	spinner.hidden = YES;
 	if (success) {
 		NSDictionary *jsondata = [[(WebRequest*)request urlData] objectFromJSONData];
 		NSDictionary *feed = [jsondata objectForKey:@"feed"];
@@ -207,6 +209,7 @@
 #pragma mark -
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	spinner.hidden = NO;
 	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] delegate:self];
 }
 
