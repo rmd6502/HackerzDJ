@@ -122,7 +122,7 @@ static BOOL g_isConnected = NO;
 }
 
 - (void)finishSuccess:(BOOL)succeeded {
-	if (self.delegate && 
+	if (self.delegate != nil && 
 		([self.delegate respondsToSelector:@selector(operation:requestFinished:)] ||
 		 [self.delegate respondsToSelector:self.selector])
 		 ) {

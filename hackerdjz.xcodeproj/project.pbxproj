@@ -31,6 +31,7 @@
 		83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DBED1366480F003653AF /* UIImageView+Cached.m */; };
 		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
+		9C64CB5C136C9647000C1F51 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C64CB5B136C9647000C1F51 /* no_image.png */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,7 @@
 		83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeAPIModel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
+		9C64CB5B136C9647000C1F51 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
 		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +169,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C64CB5B136C9647000C1F51 /* no_image.png */,
 				9C205CC713666138008E4D05 /* entertext.png */,
 				9CCDEA9713666069000D1502 /* phono.jpg */,
 				9CCDEA9413665A1D000D1502 /* ic_menu_block.png */,
@@ -251,6 +254,7 @@
 				9C205CC813666138008E4D05 /* entertext.png in Resources */,
 				83AC7BFC136B29B000875C04 /* CaptchaController.xib in Resources */,
 				83AC7CA7136BB6D600875C04 /* DetailViewController.xib in Resources */,
+				9C64CB5C136C9647000C1F51 /* no_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

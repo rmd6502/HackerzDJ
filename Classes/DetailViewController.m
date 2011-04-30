@@ -7,11 +7,22 @@
 //
 
 #import "DetailViewController.h"
-
+#import "UIImageView+Cached.h"
 
 @implementation DetailViewController
 @synthesize details;
+@synthesize titleLabel;
+@synthesize subTitle;
+@synthesize description;
+@synthesize image;
+@synthesize categories;
 
+- (IBAction)playVideo:(id)sender {
+    
+}
+- (IBAction)addToPlaylist:(id)sender {
+    
+}
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -23,13 +34,54 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+ [self updateLabels];
 }
-*/
 
+
+- (void)setDetails:(NSDictionary *)details_ {
+    details = details_;
+    [self updateLabels];
+}
+    
+- (void)updateLabels {
+    self.titleLabel.text = [[[details objectForKey:@"media$group"] objectForKey:@"media$title"] objectForKey:@"$t"];
+    self.subTitle.text = [[[[details objectForKey:@"author"] objectAtIndex:0]objectForKey:@"name"] objectForKey:@"$t"];
+    NSString *descText = [[details objectForKey:@"media$description"] objectForKey:@"$t"];
+    if (descText == nil) {
+        descText = @"(no description provided)";
+    }
+    self.description.text = descText;
+    NSMutableString *category_string = [NSMutableString stringWithCapacity:100];
+    for (NSDictionary *catData in [[details objectForKey:@"media$group"] objectForKey:@"media$category"]) {
+        if ([category_string length] > 0) {
+            [category_string appendString:@","];
+        }
+        [category_string appendString:[catData objectForKey:@"$t"]];
+    }
+    NSString *defaultTag = @"";
+    NSString *defaultHQTag = @"";
+    
+    for (NSDictionary *thumbInfo in [[details objectForKey:@"media$group"] objectForKey:@"media$thumbnail"]) {
+        NSString *videoTag = [thumbInfo objectForKey:@"yt$name"];
+        if ([videoTag compare:@"default"] == NSOrderedSame) {
+            defaultTag = [thumbInfo objectForKey:@"url"];
+        } else if ([videoTag compare:@"hqdefault"] == NSOrderedSame) {
+            defaultHQTag = [thumbInfo objectForKey:@"url"];
+        }
+    }
+    
+    if ([defaultHQTag length] > 0) {
+        [image loadFromURL:[NSURL URLWithString:defaultHQTag]];
+    } else if ([defaultTag length] > 0) {
+        [image loadFromURL:[NSURL URLWithString:defaultTag]];
+    } else {
+        [image setImage:[UIImage imageNamed:@"no_image"]];
+    }
+    categories.text = category_string;
+}
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

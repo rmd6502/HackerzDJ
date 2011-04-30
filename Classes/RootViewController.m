@@ -12,6 +12,7 @@
 #import "WebRequest.h"
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
+#import "DetailViewController.h"
 
 @implementation RootViewController
 @synthesize playlistTable;
@@ -169,13 +170,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:nil bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
+    NSDictionary *result = [playlistArray objectAtIndex:indexPath.row];
+    detailViewController.details = result;
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
-	 */
 }
 
 - (IBAction)performAddAndSearch:(id)sender {

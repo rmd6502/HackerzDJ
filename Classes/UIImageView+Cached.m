@@ -17,7 +17,7 @@ static const double SecondsPerDay = (24*3600);
 
 @implementation UIImageView (Cached)
 
-#define MAX_CACHED_IMAGES 30	// max # of images we will cache before flushing cache and starting over
+#define MAX_CACHED_IMAGES 60	// max # of images we will cache before flushing cache and starting over
 
 #ifdef CORE_DATA_CACHE
 + (void)expireCachedImages {

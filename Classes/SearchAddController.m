@@ -14,6 +14,8 @@
 #import "YouTubeAPIModel.h"
 #import "YoutubeClientAuth.h"
 #import "CaptchaController.h"
+#import "DetailViewController.h"
+
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -157,6 +159,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *result = [results objectAtIndex:indexPath.row];
+    spinner.hidden = NO;
+    [self.view bringSubviewToFront:spinner];
 	if (authKey == nil) {
 		YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
 		req.target = self;
@@ -170,20 +174,19 @@
 }
 
 - (void)doAddVideo:(NSDictionary *)videoData {
-	LOG_DEBUG(@"here");
 	NSString *videoID = [[[videoData objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"];
 	[YouTubeAPIModel addVideo:videoID toPlaylist:playlistId authKey:authKey delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	/*
 	 NSDictionary *result = [results objectAtIndex:indexPath.row];
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:nil bundle:nil];
+    detailViewController.details = result;
      // ...
      // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
-	 */
+
 }
 
 #pragma mark -
@@ -234,6 +237,8 @@
 
 - (void)videoAdded:(WebRequest *)request result:(BOOL)success {
 	LOG_DEBUG(@"video add %@", [NSString stringWithCString:(const char *)[request.urlData bytes] encoding:NSASCIIStringEncoding]);
+    spinner.hidden = YES;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData {
