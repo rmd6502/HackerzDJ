@@ -21,4 +21,6 @@
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey userData:(NSObject *)userData;
 - (void)doAddVideo:(NSDictionary *)videoData;
 - (void)videoAdded:(WebRequest *)request result:(BOOL)success;
+- (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData;
+- (void)captchaFinished:(NSString *)captchaToken captchaText:(NSString *)captchaText userData:(NSObject *)userData;
 @end

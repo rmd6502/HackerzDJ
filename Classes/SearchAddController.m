@@ -13,6 +13,7 @@
 #import "UIImageView+Cached.h"
 #import "YouTubeAPIModel.h"
 #import "YoutubeClientAuth.h"
+#import "CaptchaController.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -230,6 +231,22 @@
 
 - (void)videoAdded:(WebRequest *)request result:(BOOL)success {
 	LOG_DEBUG(@"video add %@", [NSString stringWithCString:(const char *)[request.urlData bytes] encoding:NSASCIIStringEncoding]);
+}
+
+- (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData {
+	CaptchaController *captchaVC = [[CaptchaController alloc] initWithNibName:nil bundle:nil];
+	captchaVC.captchaURL = captchaURL;
+	captchaVC.captchaToken = captchaToken;
+	captchaVC.delegate = self;
+	[self.navigationController pushViewController:captchaVC animated:YES];
+}
+
+- (void)captchaFinished:(NSString *)captchaToken captchaText:(NSString *)captchaText userData:(NSObject *)userData {
+	YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
+	req.target = self;
+	req.tselector = @selector(clientAuthComplete:authKey:userData:);
+	req.userData = userData;
+	[YouTubeAPIModel addToQueue:req description:@"Authenticate"];
 }
 
 @end

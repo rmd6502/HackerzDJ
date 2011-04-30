@@ -90,11 +90,11 @@ static BOOL g_isConnected = NO;
 	NSURL *myUrl = [NSURL URLWithString:self.url]; 
 	LOG_DEBUG(@"cookies for request %@: %@", myUrl, [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:myUrl]);
 	NSMutableURLRequest *fetchRequest = [NSMutableURLRequest requestWithURL:myUrl
-												  cachePolicy:NSURLRequestUseProtocolCachePolicy
+												  cachePolicy:NSURLRequestReloadIgnoringCacheData
 											  timeoutInterval:10.0f];
 	fetchRequest.HTTPMethod = httpMethod;
 	if (self.httpBody != nil) {
-		LOG_DEBUG(@"body: %@", httpBody);
+		LOG_DEBUG(@"body: %@", [NSString stringWithCString:[httpBody bytes] encoding:NSASCIIStringEncoding]);
 		fetchRequest.HTTPBody = httpBody;
 	}
 	

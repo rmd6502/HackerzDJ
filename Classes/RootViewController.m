@@ -24,15 +24,27 @@
     [super viewDidLoad];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-	[YouTubeAPIModel getPlaylistsWithDelegate:self];
-	spinner.hidden = NO;
+	//[YouTubeAPIModel getPlaylistsWithDelegate:self];
+	//spinner.hidden = NO;
 }
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	spinner.hidden = NO;
+	[YouTubeAPIModel getPlaylistsWithDelegate:self];
 }
-*/
+
+- (void)navigationController:(UINavigationController *)navigationController 
+	  willShowViewController:(UIViewController *)viewController 
+					animated:(BOOL)animated {
+	//[super navigationController:navigationController willShowViewController:viewController animated:animated];
+	if (viewController == self) {
+		spinner.hidden = NO;
+		[YouTubeAPIModel getPlaylistsWithDelegate:self];
+	}
+}
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

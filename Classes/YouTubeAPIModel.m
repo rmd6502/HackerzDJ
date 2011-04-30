@@ -28,14 +28,16 @@
     req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistsURL,@"hackerzdj"],kYoutubeBodyCommon];
     req.delegate = delegate;
     
-    BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Get Playlists"];
+	if ([[Reachability sharedReachability] hasConnection] || [[NSOperationQueue currentQueue] count] < 2) {
+		[[NSOperationQueue currentQueue] addOperation:req];
+	}
     [req release];
-    return ret;
+    return YES;
 }
 
 + (BOOL)getContentsOfPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	WebRequest *req = [[WebRequest alloc]init];
-    req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistContentsURL,playlistId],kYoutubeBodyCommon];
+    req.url = [NSString stringWithFormat:@"%@?%@&max-results=50",[NSString stringWithFormat:kYoutubeGetPlaylistContentsURL,playlistId],kYoutubeBodyCommon];
     req.delegate = delegate;
     
     BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Get Playlist Contents"];
@@ -61,10 +63,10 @@
 	WebRequest *req = [[WebRequest alloc]init];
 	req.delegate = delegate;
 	req.selector = @selector(videoAdded:result:);
-	req.url = [NSString stringWithFormat:kYoutubeGetPlaylistContentsURL, videoID];
+	req.url = [NSString stringWithFormat:kYoutubeAddToPlaylistURL, playlistId];
 	req.httpMethod = @"POST";
 	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
-				   [NSString stringWithFormat:@"AuthSub token=\"%@\"", authKey], @"Authorization",
+				   [NSString stringWithFormat:@"GoogleLogin auth=\"%@\"", authKey], @"Authorization",
 				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
 				   @"application/atom+xml", @"Content-Type",
 				   @"2", @"GData-Version",

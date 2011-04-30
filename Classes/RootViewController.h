@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WebRequestDelegate.h"
 
-@interface RootViewController : UIViewController<WebRequestDelegate> {
+@interface RootViewController : UIViewController<WebRequestDelegate,UINavigationControllerDelegate> {
 	// This is the model
 	NSArray *playlistArray;
 	NSArray *results;

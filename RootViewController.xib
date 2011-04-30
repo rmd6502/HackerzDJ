@@ -68,7 +68,7 @@
 					<object class="IBUIActivityIndicatorView" id="730245887">
 						<reference key="NSNextResponder" ref="256470107"/>
 						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{141, 211}, {37, 37}}</string>
+						<string key="NSFrame">{{141, 180}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="256470107"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -120,6 +120,14 @@
 						<reference key="destination" ref="709618507"/>
 					</object>
 					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">spinner</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="730245887"/>
+					</object>
+					<int key="connectionID">23</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -185,7 +193,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RootViewController</string>
 					<string>UIResponder</string>
-					<string>{{668, 223}, {320, 460}}</string>
+					<string>{{324, 223}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{615, 353}, {320, 247}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -194,7 +202,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUMNAABDUwAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDDQAAw3YAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -214,7 +222,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

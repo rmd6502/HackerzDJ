@@ -13,11 +13,22 @@
 @implementation YoutubeClientAuth
 @synthesize target;
 @synthesize tselector;
+@synthesize captcha_callback;
+@synthesize captchaToken;
+@synthesize captchaText;
 
 - (id)init {
 	if ((self = [super init]) != nil) {
 		self.url = kClientAuthURL;
-		self.httpBody = [[NSString stringWithFormat:kClientAuthBody,kClientAuthUsername,kClientAuthPassword] dataUsingEncoding:NSASCIIStringEncoding];
+		NSString *httpBody = nil;
+		
+		if (captchaToken != nil) {
+			httpBody = [NSString stringWithFormat:kClientCaptchaAuthBody,kClientAuthUsername,kClientAuthPassword,captchaToken,captchaText];			
+		} else {
+			httpBody = [NSString stringWithFormat:kClientAuthBody,kClientAuthUsername,kClientAuthPassword];
+		}
+
+		self.httpBody = [httpBody dataUsingEncoding:NSASCIIStringEncoding];		
 		self.httpMethod = @"POST";
 		self.delegate = self;
 		self.contentType = @"application/x-www-form-urlencoded";
@@ -29,21 +40,30 @@
 #pragma mark WebRequestDelegate
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
 	NSString *authKey = @"";
+	NSMutableDictionary *responses = [NSMutableDictionary dictionary];
 	if (success) {
 		NSString *keys = [[NSString alloc] initWithData:[(WebRequest *)request urlData] encoding:NSUTF8StringEncoding];
 		LOG_DEBUG(@"keys %@", keys);
         for (NSString *comps in [keys componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
             NSArray *vals = [comps componentsSeparatedByString:@"="];
-            if ([[vals objectAtIndex:0] caseInsensitiveCompare:@"Auth"] == NSOrderedSame) {
-                authKey = [vals objectAtIndex:1];
-                break;
-            }
-        }
+			if ([vals count] < 2) continue;
+			[responses setObject:[vals objectAtIndex:1] forKey:[vals objectAtIndex:0]];
+		}
 		[keys release];
 	}
-	if ([target respondsToSelector:tselector]) {
-		objc_msgSend(target, tselector, [NSNumber numberWithBool:success], authKey, self.userData);
-		//[target performSelector:tselector withObject:[NSNumber numberWithBool:success] withObject:authKey];
+	authKey = [responses objectForKey:@"Auth"];
+	if (authKey != nil) {
+		if ([target respondsToSelector:tselector]) {
+			objc_msgSend(target, tselector, [NSNumber numberWithBool:success], authKey, self.userData);
+			//[target performSelector:tselector withObject:[NSNumber numberWithBool:success] withObject:authKey];
+		}
+	} else {
+		if ([target respondsToSelector:captcha_callback]) {
+			objc_msgSend(target, captcha_callback, 
+						 [responses objectForKey:@"CaptchaUrl"], 
+						 [responses objectForKey:@"CaptchaToken"], 
+						 self.userData);
+		}
 	}
 }
 
