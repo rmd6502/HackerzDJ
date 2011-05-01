@@ -99,6 +99,10 @@
     [super dealloc];
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.searchDisplayController.searchBar resignFirstResponder];
+}
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -261,6 +265,7 @@
 #pragma mark -
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.searchDisplayController.searchResultsTableView.rowHeight = 80;
 	spinner.hidden = NO;
     NSString *category = [[categories objectAtIndex:[picker selectedRowInComponent:0]] objectForKey:@"term"];
 	self.searchDisplayController.searchResultsTableView.hidden = ![[YouTubeAPIModel sharedAPIModel] videoSearch:[searchBar text] category:category delegate:self];
@@ -278,6 +283,7 @@
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView {
 	tableView.hidden = YES;
+    self.searchDisplayController.searchResultsTableView.rowHeight = 80;
 }
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {
