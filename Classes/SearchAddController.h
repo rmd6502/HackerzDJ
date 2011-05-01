@@ -22,6 +22,7 @@
 @property (nonatomic,assign) IBOutlet UIPickerView *picker;
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey userData:(NSObject *)userData;
+- (void)startAddVideo:(NSDictionary *)result;
 - (void)doAddVideo:(NSDictionary *)videoData;
 - (void)videoAdded:(WebRequest *)request result:(BOOL)success;
 - (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData;

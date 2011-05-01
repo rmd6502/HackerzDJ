@@ -17,12 +17,36 @@
 @synthesize image;
 @synthesize categories;
 @synthesize ratings;
+@synthesize delegate;
 
 - (IBAction)playVideo:(id)sender {
-    
+    if (player != nil) {
+        [player release];
+    }
+    NSString *mediaURL = nil;
+    for (NSDictionary *mg in [[details objectForKey:@"media$group"] objectForKey:@"media$content"]) {
+        if ([[mg objectForKey:@"yt$format"] intValue] == 5) continue;
+        mediaURL = [mg objectForKey:@"url"];
+        break;
+    }
+    if (mediaURL != nil) {
+        LOG_DEBUG(@"playing URL %@", mediaURL);
+        player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:mediaURL]];
+        [[player view] setFrame: [self.view bounds]];
+        [self.view addSubview:player.view];
+        [player prepareToPlay];
+        [player play];
+    } else {
+        UIAlertView *uav = [[UIAlertView alloc] initWithTitle:@"Can't Play Video" message:@"No non-flash video URL found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [uav show];
+        [uav release];
+    }
 }
 - (IBAction)addToPlaylist:(id)sender {
-    
+    if ([delegate respondsToSelector:@selector(startAddVideo:)]) {
+        [delegate performSelector:@selector(startAddVideo:) withObject:details];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*

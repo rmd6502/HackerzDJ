@@ -37,6 +37,7 @@
 		9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC483136CB7F200A8DEF7 /* categories.cat */; };
 		9C8FC487136CBA3500A8DEF7 /* Category_Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */; };
 		9C8FC48A136CBC2D00A8DEF7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */; };
+		9C8FC48C136D0A1500A8DEF7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category_Parser.m; sourceTree = "<group>"; };
 		9C8FC488136CBC2D00A8DEF7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
 		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C8FC48C136D0A1500A8DEF7 /* MediaPlayer.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -167,6 +170,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,

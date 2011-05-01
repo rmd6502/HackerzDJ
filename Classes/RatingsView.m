@@ -50,7 +50,7 @@
 
     CGRect clip = CGRectMake(0, 0, self.frame.size.width * (rating/5.0), self.frame.size.height);
     
-    NSLog(@"ratinf %f size frame %@ draw frame %@",rating, NSStringFromCGRect(sz), NSStringFromCGRect(clip));
+    NSLog(@"rating %f size frame %@ draw frame %@",rating, NSStringFromCGRect(sz), NSStringFromCGRect(clip));
     CGContextClipToRect(context, clip);
     CGContextDrawTiledImage(context, sz, starImage.CGImage);
 }

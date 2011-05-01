@@ -28,6 +28,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	//[YouTubeAPIModel getPlaylistsWithDelegate:self];
 	//spinner.hidden = NO;
+    playlistTable.rowHeight = 80;
 }
 
 
@@ -102,6 +103,7 @@
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:16];
 	cell.textLabel.textAlignment = UITextAlignmentCenter;
+    cell.textLabel.numberOfLines = 3;
 	if ([playlistArray count] == 0) { 
 		if (indexPath.row == 2) {
 			cell.textLabel.text = @"Playlist is empty";

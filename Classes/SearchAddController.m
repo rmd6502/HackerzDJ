@@ -65,6 +65,7 @@
                               @"Any Category", @"label",
                               nil] atIndex:0];
     categories = newCategories;
+    self.searchDisplayController.searchResultsTableView.rowHeight = 80;
     //LOG_DEBUG(@"categories %@", categories);
 }
 
@@ -125,6 +126,7 @@
     
 	// Configure the cell.
 	NSDictionary *result = [results objectAtIndex:indexPath.row];
+    cell.textLabel.numberOfLines = 3;
 	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:14];
 		cell.textLabel.textAlignment = UITextAlignmentLeft;
@@ -184,6 +186,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *result = [results objectAtIndex:indexPath.row];
+    [self startAddVideo:result];
+}
+
+- (void)startAddVideo:(NSDictionary *)result {
     spinner.hidden = NO;
     [self.view bringSubviewToFront:spinner];
 	if (authKey == nil) {
@@ -207,6 +213,7 @@
 	 NSDictionary *result = [results objectAtIndex:indexPath.row];
 	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:nil bundle:nil];
     detailViewController.details = result;
+    detailViewController.delegate = self;
      // ...
      // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];

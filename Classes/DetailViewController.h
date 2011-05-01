@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MPMoviePlayerController.h>
 #import "RatingsView.h"
 
 @interface DetailViewController : UIViewController {
-
+    MPMoviePlayerController *player;
 }
 
 @property (nonatomic,copy) NSDictionary *details;
@@ -20,7 +21,7 @@
 @property (nonatomic,assign) IBOutlet UIImageView *image;
 @property (nonatomic,assign) IBOutlet UILabel *categories;
 @property (nonatomic,assign) IBOutlet RatingsView *ratings;
-
+@property (nonatomic,assign) id<NSObject> delegate;
 
 - (IBAction)playVideo:(id)sender;
 - (IBAction)addToPlaylist:(id)sender;
