@@ -21,6 +21,7 @@
 @synthesize instrs;
 @synthesize playlistId;
 @synthesize spinner;
+@synthesize picker;
 
 #pragma mark -
 #pragma mark UIViewController
@@ -64,7 +65,7 @@
                               @"Any Category", @"label",
                               nil] atIndex:0];
     categories = newCategories;
-    LOG_DEBUG(@"categories %@", categories);
+    //LOG_DEBUG(@"categories %@", categories);
 }
 
 /*
@@ -226,6 +227,10 @@
     return 1;
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    LOG_DEBUG(@"selected row %d", row);
+}
+
 #pragma mark -
 #pragma mark WebRequestDelegate
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success {
@@ -250,7 +255,8 @@
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	spinner.hidden = NO;
-	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] delegate:self];
+    NSString *category = [[categories objectAtIndex:[picker selectedRowInComponent:0]] objectForKey:@"term"];
+	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] category:category delegate:self];
 }
 
 #pragma mark -

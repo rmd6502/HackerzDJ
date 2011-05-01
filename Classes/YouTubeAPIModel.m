@@ -45,10 +45,14 @@
     return ret;
 }
 
-+ (BOOL)videoSearch:(NSString *)search delegate:(id<WebRequestDelegate,NSObject>)delegate {
++ (BOOL)videoSearch:(NSString *)search category:(NSString *)category delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	NSString *query = [search stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     WebRequest *req = [[WebRequest alloc]init];
-    req.url = [NSString stringWithFormat:@"%@?%@&%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query],kYoutubeBodyCommon];
+    NSString *categoryQuery = @"";
+    if ([category compare:@""] != NSOrderedSame) {
+        categoryQuery = [NSString stringWithFormat:@"&category=%@",category];
+    }
+    req.url = [NSString stringWithFormat:@"%@?%@&%@%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query],kYoutubeBodyCommon,categoryQuery];
     req.delegate = delegate;
     
     BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Search"];
