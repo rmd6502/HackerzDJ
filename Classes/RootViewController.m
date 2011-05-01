@@ -163,7 +163,8 @@
 
 - (void)doRemoveVideo:(NSIndexPath *)indexPath {
     NSDictionary *videoData = [playlistArray objectAtIndex:indexPath.row];
-    [[YouTubeAPIModel sharedAPIModel] removeVideo:[[videoData objectForKey:@"yt$position"] objectForKey:@"$t"] fromPlaylist:playlistId indexPath:indexPath delegate:self];
+    NSString *videoID = [[[videoData objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"];
+    [[YouTubeAPIModel sharedAPIModel] removeVideo:videoID fromPlaylist:playlistId indexPath:indexPath delegate:self];
 }
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {

@@ -38,6 +38,7 @@
 		9C8FC487136CBA3500A8DEF7 /* Category_Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */; };
 		9C8FC48A136CBC2D00A8DEF7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */; };
 		9C8FC48C136D0A1500A8DEF7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */; };
+		9C8FC493136DE3E200A8DEF7 /* hackersvj.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC492136DE3E200A8DEF7 /* hackersvj.png */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		9C8FC488136CBC2D00A8DEF7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9C8FC492136DE3E200A8DEF7 /* hackersvj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hackersvj.png; path = ../../hackersvj.png; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
 		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,6 +194,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C8FC492136DE3E200A8DEF7 /* hackersvj.png */,
 				9C8FC483136CB7F200A8DEF7 /* categories.cat */,
 				9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */,
 				9C64CB5B136C9647000C1F51 /* no_image.png */,
@@ -282,6 +285,7 @@
 				9C64CB5C136C9647000C1F51 /* no_image.png in Resources */,
 				9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */,
 				9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */,
+				9C8FC493136DE3E200A8DEF7 /* hackersvj.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

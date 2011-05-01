@@ -96,13 +96,14 @@
 	WebRequest *req = [[WebRequest alloc]init];
 	req.delegate = delegate;
 	req.selector = @selector(videoRemoved:result:);
-	req.url = [NSString stringWithFormat:kYoutubeModifyPlaylistURL, playlistId, videoID];
+	req.url = [NSString stringWithFormat:@"%@?%@", [NSString stringWithFormat:kYoutubeModifyPlaylistURL, playlistId, videoID], kYoutubeBodyCommon];
 	req.httpMethod = @"DELETE";
 	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
 				   [NSString stringWithFormat:@"GoogleLogin auth=\"%@\"", authKey], @"Authorization",
 				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
 				   @"application/atom+xml", @"Content-Type",
 				   @"2", @"GData-Version",
+                   @"gdata.youtube.com",@"Host",
 				   nil];
     req.userData = indexPath;
 	
