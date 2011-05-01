@@ -23,24 +23,8 @@
     if (player != nil) {
         [player release];
     }
-    NSString *mediaURL = nil;
-    for (NSDictionary *mg in [[details objectForKey:@"media$group"] objectForKey:@"media$content"]) {
-        if ([[mg objectForKey:@"yt$format"] intValue] == 5) continue;
-        mediaURL = [mg objectForKey:@"url"];
-        break;
-    }
-    if (mediaURL != nil) {
-        LOG_DEBUG(@"playing URL %@", mediaURL);
-        player = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:mediaURL]];
-        [[player view] setFrame: [self.view bounds]];
-        [self.view addSubview:player.view];
-        [player prepareToPlay];
-        [player play];
-    } else {
-        UIAlertView *uav = [[UIAlertView alloc] initWithTitle:@"Can't Play Video" message:@"No non-flash video URL found" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [uav show];
-        [uav release];
-    }
+    NSString *mediaURL = [NSString stringWithFormat:@"http://www.youtube.com/v/%@",[[[details objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mediaURL]];
 }
 - (IBAction)addToPlaylist:(id)sender {
     if ([delegate respondsToSelector:@selector(startAddVideo:)]) {
