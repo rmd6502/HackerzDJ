@@ -34,6 +34,9 @@
 		9C64CB5C136C9647000C1F51 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C64CB5B136C9647000C1F51 /* no_image.png */; };
 		9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */; };
 		9C8FC47E136C9AD100A8DEF7 /* RatingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */; };
+		9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC483136CB7F200A8DEF7 /* categories.cat */; };
+		9C8FC487136CBA3500A8DEF7 /* Category_Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */; };
+		9C8FC48A136CBC2D00A8DEF7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
@@ -87,6 +90,11 @@
 		9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_point_star.png; sourceTree = "<group>"; };
 		9C8FC47C136C9AD100A8DEF7 /* RatingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsView.h; sourceTree = "<group>"; };
 		9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsView.m; sourceTree = "<group>"; };
+		9C8FC483136CB7F200A8DEF7 /* categories.cat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = categories.cat; sourceTree = "<group>"; };
+		9C8FC485136CBA3500A8DEF7 /* Category_Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category_Parser.h; sourceTree = "<group>"; };
+		9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category_Parser.m; sourceTree = "<group>"; };
+		9C8FC488136CBC2D00A8DEF7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
 		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +117,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9C8FC488136CBC2D00A8DEF7 /* GDataXMLNode.h */,
+				9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */,
 				83D8DBEC1366480F003653AF /* UIImageView+Cached.h */,
 				83D8DBED1366480F003653AF /* UIImageView+Cached.m */,
 				83D8DB5913660A68003653AF /* JSONKit.h */,
@@ -140,6 +150,8 @@
 				83AC7CA4136BB6D600875C04 /* DetailViewController.m */,
 				9C8FC47C136C9AD100A8DEF7 /* RatingsView.h */,
 				9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */,
+				9C8FC485136CBA3500A8DEF7 /* Category_Parser.h */,
+				9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -176,6 +188,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9C8FC483136CB7F200A8DEF7 /* categories.cat */,
 				9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */,
 				9C64CB5B136C9647000C1F51 /* no_image.png */,
 				9C205CC713666138008E4D05 /* entertext.png */,
@@ -264,6 +277,7 @@
 				83AC7CA7136BB6D600875C04 /* DetailViewController.xib in Resources */,
 				9C64CB5C136C9647000C1F51 /* no_image.png in Resources */,
 				9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */,
+				9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +302,8 @@
 				83AC7BFB136B29B000875C04 /* CaptchaController.m in Sources */,
 				83AC7CA6136BB6D600875C04 /* DetailViewController.m in Sources */,
 				9C8FC47E136C9AD100A8DEF7 /* RatingsView.m in Sources */,
+				9C8FC487136CBA3500A8DEF7 /* Category_Parser.m in Sources */,
+				9C8FC48A136CBC2D00A8DEF7 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +324,9 @@
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
 				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = HackerzDJ;
 			};
 			name = Debug;
@@ -326,8 +343,9 @@
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
 				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "hackerdjz-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = HackerzDJ;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -341,6 +359,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
@@ -354,6 +373,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;

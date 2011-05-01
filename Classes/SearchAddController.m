@@ -15,7 +15,7 @@
 #import "YoutubeClientAuth.h"
 #import "CaptchaController.h"
 #import "DetailViewController.h"
-
+#import "Category_Parser.h"
 
 @implementation SearchAddController
 @synthesize instrs;
@@ -39,9 +39,32 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableArray *newCategories = [[NSMutableArray alloc] init];
  	self.title = @"Add Youtube Videos";
 	instrs.font = [UIFont fontWithName:@"ChalkDuster" size:20.0];
 	results = nil;
+    Category_Parser *cp = [[Category_Parser alloc] init];
+    LOG_DEBUG(@"category parser %@",cp);
+    NSArray *cats = [cp.root.rootElement elementsForName:@"atom:category"];
+    for (GDataXMLElement *cat in cats) {
+        NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys:[cat attributeForName:@"term"].stringValue,
+                             @"term",
+                             [cat attributeForName:@"label"].stringValue, @"label",
+                             nil];
+        [newCategories addObject:tmp];
+    }
+    if (categories != nil) {
+        [categories release];
+    }
+    [newCategories sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [[(NSDictionary *)obj1 objectForKey:@"label"] compare:[(NSDictionary *)obj2 objectForKey:@"label"]];
+    }];
+    [newCategories insertObject:[NSDictionary dictionaryWithObjectsAndKeys:@"",
+                              @"term",
+                              @"Any Category", @"label",
+                              nil] atIndex:0];
+    categories = newCategories;
+    LOG_DEBUG(@"categories %@", categories);
 }
 
 /*
@@ -69,6 +92,7 @@
 
 
 - (void)dealloc {
+    [categories release];
 	[authKey release];
     [super dealloc];
 }
@@ -187,6 +211,19 @@
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 
+}
+#pragma mark -
+#pragma mark UIPickerViewDelegate and DataSource
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [[categories objectAtIndex:row] objectForKey:@"label"];
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [categories count];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
 }
 
 #pragma mark -

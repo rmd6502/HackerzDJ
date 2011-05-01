@@ -10,9 +10,10 @@
 #import "WebRequestDelegate.h"
 
 @class WebRequest;
-@interface SearchAddController : UIViewController<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,WebRequestDelegate> {
+@interface SearchAddController : UIViewController<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,WebRequestDelegate,UIPickerViewDataSource,UIPickerViewDelegate> {
 	NSArray *results;
 	NSString *authKey;
+    NSArray *categories;
 }
 
 @property (nonatomic,assign) UILabel *instrs;
