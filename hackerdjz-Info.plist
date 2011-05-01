@@ -26,13 +26,13 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	<key>UIPrerenderedIcon</key>
-	<true/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ChalkDuster.ttf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>UILaunchImageFile</key>
+	<string>hackersvj.png</string>
 </dict>
 </plist>

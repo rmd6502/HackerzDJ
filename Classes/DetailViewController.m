@@ -59,7 +59,7 @@
 - (void)updateLabels {
     self.titleLabel.text = [[[details objectForKey:@"media$group"] objectForKey:@"media$title"] objectForKey:@"$t"];
     self.subTitle.text = [[[[details objectForKey:@"author"] objectAtIndex:0]objectForKey:@"name"] objectForKey:@"$t"];
-    NSString *descText = [[details objectForKey:@"media$description"] objectForKey:@"$t"];
+    NSString *descText = [[[details objectForKey:@"media$group"] objectForKey:@"media$description"] objectForKey:@"$t"];
     if (descText == nil) {
         descText = @"(no description provided)";
     }

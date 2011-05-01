@@ -217,10 +217,11 @@
 	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:nil bundle:nil];
     detailViewController.details = result;
     detailViewController.delegate = self;
-    detailViewController.addButton.enabled = YES;
+
      // ...
      // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
+        detailViewController.addButton.hidden = NO;
 	 [detailViewController release];
 
 }

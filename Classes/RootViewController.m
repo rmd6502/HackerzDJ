@@ -196,8 +196,8 @@
      // Pass the selected object to the new view controller.
     NSDictionary *result = [playlistArray objectAtIndex:indexPath.row];
     detailViewController.details = result;
-    detailViewController.addButton.enabled = NO;
 	 [self.navigationController pushViewController:detailViewController animated:YES];
+        detailViewController.addButton.hidden = YES;
 	 [detailViewController release];
 }
 
