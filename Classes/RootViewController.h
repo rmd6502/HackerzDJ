@@ -24,5 +24,9 @@
 - (IBAction)refresh:(id)sender;
 - (IBAction)performAddAndSearch:(id)sender;
 - (void)sendPlaylistRequest;
+- (void)startRemoveVideo:(NSIndexPath *)indexPath;
+- (void)doRemoveVideo:(NSIndexPath *)indexPath;
+- (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData;
+- (void)captchaFinished:(NSString *)captchaToken captchaText:(NSString *)captchaText userData:(NSObject *)userData;
 
 @end

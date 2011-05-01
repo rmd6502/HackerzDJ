@@ -12,7 +12,17 @@
 #import "YoutubeClientAuth.h"
 
 @implementation YouTubeAPIModel
-+ (BOOL)addToQueue:(BaseRequest *)request description:(NSString *)description {
+@synthesize authKey;
+
++ (YouTubeAPIModel *)sharedAPIModel {
+    static YouTubeAPIModel *s_model = nil;
+    if (s_model == nil) {
+        s_model = [[YouTubeAPIModel alloc]init];
+    }
+    return s_model;
+}
+
+- (BOOL)addToQueue:(BaseRequest *)request description:(NSString *)description {
     if ([[Reachability sharedReachability] hasConnection]) {
         [[NSOperationQueue currentQueue] addOperation:request];
         return YES;
@@ -23,7 +33,7 @@
 		return NO;
     }
 }
-+ (BOOL)getPlaylistsWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
+- (BOOL)getPlaylistsWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
 	WebRequest *req = [[WebRequest alloc]init];
     req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistsURL,@"hackerzdj"],kYoutubeBodyCommon];
     req.delegate = delegate;
@@ -35,17 +45,17 @@
     return YES;
 }
 
-+ (BOOL)getContentsOfPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
+- (BOOL)getContentsOfPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	WebRequest *req = [[WebRequest alloc]init];
     req.url = [NSString stringWithFormat:@"%@?%@&max-results=50",[NSString stringWithFormat:kYoutubeGetPlaylistContentsURL,playlistId],kYoutubeBodyCommon];
     req.delegate = delegate;
     
-    BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Get Playlist Contents"];
+    BOOL ret = [self addToQueue:req description:@"Get Playlist Contents"];
     [req release];
     return ret;
 }
 
-+ (BOOL)videoSearch:(NSString *)search category:(NSString *)category delegate:(id<WebRequestDelegate,NSObject>)delegate {
+- (BOOL)videoSearch:(NSString *)search category:(NSString *)category delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	NSString *query = [search stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     WebRequest *req = [[WebRequest alloc]init];
     NSString *categoryQuery = @"";
@@ -55,13 +65,13 @@
     req.url = [NSString stringWithFormat:@"%@?%@&%@%@",kYoutubeSearchURL,[NSString stringWithFormat:kYoutubeSearchBody,query],kYoutubeBodyCommon,categoryQuery];
     req.delegate = delegate;
     
-    BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Search"];
+    BOOL ret = [self addToQueue:req description:@"Search"];
     [req release];
 	
 	return ret;
 }
 
-+ (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId authKey:(NSString *)authKey delegate:(id<WebRequestDelegate,NSObject>)delegate {
+- (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate {
 	BOOL ret = YES;
 	
 	WebRequest *req = [[WebRequest alloc]init];
@@ -76,15 +86,35 @@
 				   @"2", @"GData-Version",
 				   nil];
 	req.httpBody = [[NSString stringWithFormat:kYoutubeEntryAtom, videoID] dataUsingEncoding:NSASCIIStringEncoding];
-	ret = [YouTubeAPIModel addToQueue:req description:@"Add to Playlist"];
+	ret = [self addToQueue:req description:@"Add to Playlist"];
 	return ret;
 }
 
-+ (BOOL)clientAuthWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
+- (BOOL)removeVideo:(NSString *)videoID fromPlaylist:(NSString *)playlistId indexPath:(NSIndexPath *)indexPath delegate:(id<WebRequestDelegate,NSObject>)delegate {
+	BOOL ret = YES;
+	
+	WebRequest *req = [[WebRequest alloc]init];
+	req.delegate = delegate;
+	req.selector = @selector(videoRemoved:result:);
+	req.url = [NSString stringWithFormat:kYoutubeModifyPlaylistURL, playlistId, videoID];
+	req.httpMethod = @"DELETE";
+	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
+				   [NSString stringWithFormat:@"GoogleLogin auth=\"%@\"", authKey], @"Authorization",
+				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
+				   @"application/atom+xml", @"Content-Type",
+				   @"2", @"GData-Version",
+				   nil];
+    req.userData = indexPath;
+	
+	ret = [self addToQueue:req description:@"Remove from Playlist"];
+	return ret;
+}
+
+- (BOOL)clientAuthWithDelegate:(id<WebRequestDelegate,NSObject>)delegate {
 	YoutubeClientAuth *req = [[YoutubeClientAuth alloc]init];
 	req.target = delegate;
 	req.tselector = @selector(clientAuthComplete:authKey:userData:);
-	BOOL ret = [YouTubeAPIModel addToQueue:req description:@"Authenticate"];
+	BOOL ret = [self addToQueue:req description:@"Authenticate"];
     [req release];
     return ret;
 }

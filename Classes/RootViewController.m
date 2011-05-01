@@ -9,10 +9,12 @@
 #import "RootViewController.h"
 #import "SearchAddController.h"
 #import "YouTubeAPIModel.h"
+#import "YoutubeClientAuth.h"
 #import "WebRequest.h"
 #import "JSONKit.h"
 #import "UIImageView+Cached.h"
 #import "DetailViewController.h"
+#import "CaptchaController.h"
 
 @implementation RootViewController
 @synthesize playlistTable;
@@ -136,26 +138,42 @@
 */
 
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
+        [self startRemoveVideo:indexPath];
+    }
 }
-*/
 
+- (void)startRemoveVideo:(NSIndexPath *)indexPath {
+    spinner.hidden = NO;
+    [self.view bringSubviewToFront:spinner];
+	if ([YouTubeAPIModel sharedAPIModel].authKey == nil) {
+		YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
+		req.target = self;
+		req.tselector = @selector(clientAuthComplete:authKey:userData:);
+		req.userData = indexPath;
+		[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
+	} else {
+		[self doRemoveVideo:indexPath];
+	}
+}
 
-/*
+- (void)doRemoveVideo:(NSIndexPath *)indexPath {
+    NSDictionary *videoData = [playlistArray objectAtIndex:indexPath.row];
+    [[YouTubeAPIModel sharedAPIModel] removeVideo:[[videoData objectForKey:@"yt$position"] objectForKey:@"$t"] fromPlaylist:playlistId indexPath:indexPath delegate:self];
+}
+
+- (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {
+	[YouTubeAPIModel sharedAPIModel].authKey = authKey_;
+	[self doRemoveVideo:(NSIndexPath *)userData];
+}
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 }
-*/
 
 
 /*
@@ -177,6 +195,7 @@
      // Pass the selected object to the new view controller.
     NSDictionary *result = [playlistArray objectAtIndex:indexPath.row];
     detailViewController.details = result;
+    detailViewController.addButton.enabled = NO;
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 }
@@ -256,7 +275,7 @@
 	
 	playlistId = [[[playlist objectForKey:@"yt$playlistId"] objectForKey:@"$t"] copy];
 	LOG_DEBUG(@"playlist %@", playlistId);
-	[YouTubeAPIModel getContentsOfPlaylist:playlistId delegate:self];
+	[[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -265,7 +284,46 @@
         isRefreshing = YES;
     }
     spinner.hidden = NO;
-    [YouTubeAPIModel getPlaylistsWithDelegate:self];
+    [[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
 }
+
+- (void)videoRemoved:(WebRequest *)request result:(BOOL)success {
+    NSString *response = [NSString stringWithCString:(const char *)[request.urlData bytes] encoding:NSASCIIStringEncoding];
+    LOG_DEBUG(@"video remove %@", response);
+    if ([response rangeOfString:@"<error>"].location != NSNotFound) {
+        success = NO;
+    }
+    spinner.hidden = YES;
+    if (success) {
+        NSIndexPath *indexPath = (NSIndexPath *)request.userData;
+        NSMutableArray *newPlaylist = [NSMutableArray arrayWithArray:playlistArray];
+        [playlistArray release];
+        [newPlaylist removeObjectAtIndex:indexPath.row];
+        playlistArray = [newPlaylist retain];
+        
+        [playlistTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        UIAlertView *uav = [[UIAlertView alloc] initWithTitle:@"Could not delete" message:@"Failed to delete video" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [uav show];
+        [uav release];
+    }
+}
+
+- (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData {
+	CaptchaController *captchaVC = [[CaptchaController alloc] initWithNibName:nil bundle:nil];
+	captchaVC.captchaURL = captchaURL;
+	captchaVC.captchaToken = captchaToken;
+	captchaVC.delegate = self;
+	[self.navigationController pushViewController:captchaVC animated:YES];
+}
+
+- (void)captchaFinished:(NSString *)captchaToken captchaText:(NSString *)captchaText userData:(NSObject *)userData {
+	YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
+	req.target = self;
+	req.tselector = @selector(clientAuthComplete:authKey:userData:);
+	req.userData = userData;
+	[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
+}
+
 @end
 

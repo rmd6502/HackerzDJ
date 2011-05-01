@@ -21,6 +21,7 @@
 @property (nonatomic,assign) IBOutlet UIImageView *image;
 @property (nonatomic,assign) IBOutlet UILabel *categories;
 @property (nonatomic,assign) IBOutlet RatingsView *ratings;
+@property (nonatomic,assign) IBOutlet UIButton *addButton;
 @property (nonatomic,assign) id<NSObject> delegate;
 
 - (IBAction)playVideo:(id)sender;

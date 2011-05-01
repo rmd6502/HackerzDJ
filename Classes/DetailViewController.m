@@ -18,6 +18,7 @@
 @synthesize categories;
 @synthesize ratings;
 @synthesize delegate;
+@synthesize addButton;
 
 - (IBAction)playVideo:(id)sender {
     if (player != nil) {

@@ -192,21 +192,20 @@
 - (void)startAddVideo:(NSDictionary *)result {
     spinner.hidden = NO;
     [self.view bringSubviewToFront:spinner];
-	if (authKey == nil) {
+	if ([YouTubeAPIModel sharedAPIModel].authKey == nil) {
 		YoutubeClientAuth *req = [[YoutubeClientAuth alloc] init];
 		req.target = self;
 		req.tselector = @selector(clientAuthComplete:authKey:userData:);
 		req.userData = result;
-		[YouTubeAPIModel addToQueue:req description:@"Authenticate"];
+		[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
 	} else {
 		[self doAddVideo:result];
 	}
-
 }
 
 - (void)doAddVideo:(NSDictionary *)videoData {
 	NSString *videoID = [[[videoData objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"];
-	[YouTubeAPIModel addVideo:videoID toPlaylist:playlistId authKey:authKey delegate:self];
+	[[YouTubeAPIModel sharedAPIModel] addVideo:videoID toPlaylist:playlistId delegate:self];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -214,6 +213,7 @@
 	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:nil bundle:nil];
     detailViewController.details = result;
     detailViewController.delegate = self;
+    detailViewController.addButton.enabled = YES;
      // ...
      // Pass the selected object to the new view controller.
 	 [self.navigationController pushViewController:detailViewController animated:YES];
@@ -263,7 +263,7 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	spinner.hidden = NO;
     NSString *category = [[categories objectAtIndex:[picker selectedRowInComponent:0]] objectForKey:@"term"];
-	self.searchDisplayController.searchResultsTableView.hidden = ![YouTubeAPIModel videoSearch:[searchBar text] category:category delegate:self];
+	self.searchDisplayController.searchResultsTableView.hidden = ![[YouTubeAPIModel sharedAPIModel] videoSearch:[searchBar text] category:category delegate:self];
 }
 
 #pragma mark -
@@ -281,7 +281,7 @@
 }
 
 - (void)clientAuthComplete:(NSNumber *)success authKey:(NSString *)authKey_ userData:(NSObject *)userData {
-	authKey = [authKey_ copy];
+	[YouTubeAPIModel sharedAPIModel].authKey = authKey_;
 	[self doAddVideo:(NSDictionary *)userData];
 }
 
@@ -304,7 +304,7 @@
 	req.target = self;
 	req.tselector = @selector(clientAuthComplete:authKey:userData:);
 	req.userData = userData;
-	[YouTubeAPIModel addToQueue:req description:@"Authenticate"];
+	[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
 }
 
 @end
