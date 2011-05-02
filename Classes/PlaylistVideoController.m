@@ -6,7 +6,7 @@
 //  Copyright 2011 Robert M. Diamond. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "PlaylistVideoController.h"
 #import "SearchAddController.h"
 #import "YouTubeAPIModel.h"
 #import "YoutubeClientAuth.h"
@@ -16,9 +16,10 @@
 #import "DetailViewController.h"
 #import "CaptchaController.h"
 
-@implementation RootViewController
+@implementation PlaylistVideoController
 @synthesize playlistTable;
 @synthesize spinner;
+@synthesize playlistId;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -248,35 +249,17 @@
 		NSString *term = [[[feed objectForKey:@"category"] objectAtIndex:0] objectForKey:@"term"];
 		
 		LOG_DEBUG(@"results %d term %@", [results count],term);
-		if ([term rangeOfString:@"#playlistLink"].location != NSNotFound) {
-			// This is step 1, the list of playlists.  Step two is to get the contents of the most recent playlist
-			[self sendPlaylistRequest];
-		} else {
-			spinner.hidden = YES;
-			if (playlistArray != nil) {
-				[playlistArray release];
-			}
-			playlistArray = results;
-			results = nil;
-			[self.playlistTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+		spinner.hidden = YES;
+		if (playlistArray != nil) {
+			[playlistArray release];
 		}
+		playlistArray = results;
+		results = nil;
+		[self.playlistTable performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
 	} else {
 		spinner.hidden = YES;
 		NSLog(@"Failed to retrieve search results: %@", [request.error localizedDescription]);
 	}
-}
-
-- (void)sendPlaylistRequest {
-	NSArray *sorted = [results sortedArrayUsingComparator:^(id obj1, id obj2) {
-		NSString *p1 = [[(NSDictionary *)obj1 objectForKey:@"published"] objectForKey:@"$t"];
-		NSString *p2 = [[(NSDictionary *)obj2 objectForKey:@"published"] objectForKey:@"$t"];
-		return [p2 compare:p1];
-	}];
-	NSDictionary *playlist = [sorted objectAtIndex:0];
-	
-	playlistId = [[[playlist objectForKey:@"yt$playlistId"] objectForKey:@"$t"] copy];
-	LOG_DEBUG(@"playlist %@", playlistId);
-	[[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
 }
 
 - (IBAction)refresh:(id)sender {
@@ -285,7 +268,7 @@
         isRefreshing = YES;
     }
     spinner.hidden = NO;
-    [[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+    [[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
 }
 
 - (void)videoRemoved:(WebRequest *)request result:(BOOL)success {

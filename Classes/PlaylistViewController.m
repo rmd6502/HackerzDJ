@@ -10,6 +10,7 @@
 #import "WebRequest.h"
 #import "YouTubeAPIModel.h"
 #import "JSONKit.h"
+#import "PlaylistVideoController.h"
 
 @implementation PlaylistViewController
 @synthesize playlistTable;
@@ -102,6 +103,14 @@
 	}
     return cell;
 	
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSDictionary *result = [playlists objectAtIndex:indexPath.row];
+	PlaylistVideoController *pvc = [[PlaylistVideoController alloc]initWithNibName:nil bundle:nil];
+	pvc.playlistId = [[result objectForKey:@"yt$playlistId"] objectForKey:@"$t"];
+	[self.navigationController pushViewController:pvc animated:YES];
+	[pvc release];
 }
 
 - (IBAction)refresh:(id)sender {

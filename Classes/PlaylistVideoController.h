@@ -9,21 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "WebRequestDelegate.h"
 
-@interface RootViewController : UIViewController<WebRequestDelegate,UINavigationControllerDelegate> {
+@interface PlaylistVideoController : UIViewController<WebRequestDelegate,UINavigationControllerDelegate> {
 	// This is the model
 	NSArray *playlistArray;
 	NSArray *results;
-	NSString *playlistId;
-    
+	
     BOOL isRefreshing;
 }
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;
 @property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic,copy) NSString *playlistId;
 
 - (IBAction)refresh:(id)sender;
 - (IBAction)performAddAndSearch:(id)sender;
-- (void)sendPlaylistRequest;
 - (void)startRemoveVideo:(NSIndexPath *)indexPath;
 - (void)doRemoveVideo:(NSIndexPath *)indexPath;
 - (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData;

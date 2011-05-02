@@ -7,7 +7,7 @@
 //
 
 #import "hackerdjzAppDelegate.h"
-#import "RootViewController.h"
+#import "PlaylistVideoController.h"
 #import "Reachability.h"
 
 @implementation hackerdjzAppDelegate
