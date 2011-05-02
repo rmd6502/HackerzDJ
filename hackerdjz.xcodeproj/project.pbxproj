@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		833CD1C6136F452B003570E8 /* phono.png in Resources */ = {isa = PBXBuildFile; fileRef = 833CD1C5136F452B003570E8 /* phono.png */; };
+		833CD1CE136F45F7003570E8 /* phono_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 833CD1CD136F45F7003570E8 /* phono_57.png */; };
 		83AC785F1369B01F00875C04 /* YoutubeClientAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */; };
 		83AC7BFB136B29B000875C04 /* CaptchaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7BF9136B29B000875C04 /* CaptchaController.m */; };
 		83AC7BFC136B29B000875C04 /* CaptchaController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AC7BFA136B29B000875C04 /* CaptchaController.xib */; };
@@ -42,7 +44,6 @@
 		9C8FC48A136CBC2D00A8DEF7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */; };
 		9C8FC48C136D0A1500A8DEF7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */; };
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
-		9CCDEA9813666069000D1502 /* phono.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9713666069000D1502 /* phono.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		833CD1C5136F452B003570E8 /* phono.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phono.png; sourceTree = "<group>"; };
+		833CD1CD136F45F7003570E8 /* phono_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phono_57.png; sourceTree = "<group>"; };
 		83AC785D1369B01F00875C04 /* YoutubeClientAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeClientAuth.h; sourceTree = "<group>"; };
 		83AC785E1369B01F00875C04 /* YoutubeClientAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeClientAuth.m; sourceTree = "<group>"; };
 		83AC7B53136B009700875C04 /* uncommon_configs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uncommon_configs.h; sourceTree = "<group>"; };
@@ -106,7 +109,6 @@
 		9C8FC489136CBC2D00A8DEF7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		9C8FC48B136D0A1500A8DEF7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9CCDEA9413665A1D000D1502 /* ic_menu_block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_block.png; sourceTree = "<group>"; };
-		9CCDEA9713666069000D1502 /* phono.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = phono.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,13 +204,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				833CD1CD136F45F7003570E8 /* phono_57.png */,
+				833CD1C5136F452B003570E8 /* phono.png */,
 				83AC7CC5136EF8CB00875C04 /* hackersvj.png */,
 				83AC7CC6136EF8CB00875C04 /* hackersvj.svg */,
 				9C8FC483136CB7F200A8DEF7 /* categories.cat */,
 				9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */,
 				9C64CB5B136C9647000C1F51 /* no_image.png */,
 				9C205CC713666138008E4D05 /* entertext.png */,
-				9CCDEA9713666069000D1502 /* phono.jpg */,
 				9CCDEA9413665A1D000D1502 /* ic_menu_block.png */,
 				83D8D8BD13630790003653AF /* ChalkDuster.ttf */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
@@ -288,7 +291,6 @@
 				83D8D8BE13630790003653AF /* ChalkDuster.ttf in Resources */,
 				83D8D9FB1365EDE0003653AF /* SearchAddController.xib in Resources */,
 				9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */,
-				9CCDEA9813666069000D1502 /* phono.jpg in Resources */,
 				9C205CC813666138008E4D05 /* entertext.png in Resources */,
 				83AC7BFC136B29B000875C04 /* CaptchaController.xib in Resources */,
 				83AC7CA7136BB6D600875C04 /* DetailViewController.xib in Resources */,
@@ -297,6 +299,8 @@
 				9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */,
 				83AC7CC2136EF3ED00875C04 /* PlaylistViewController.xib in Resources */,
 				83AC7CC7136EF8CB00875C04 /* hackersvj.png in Resources */,
+				833CD1C6136F452B003570E8 /* phono.png in Resources */,
+				833CD1CE136F45F7003570E8 /* phono_57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

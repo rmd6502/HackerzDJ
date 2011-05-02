@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebRequestDelegate.h"
 
-
-@interface PlaylistViewController : UIViewController {
-
+@class WebRequest;
+@interface PlaylistViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,WebRequestDelegate> {
+	NSArray *playlists;
 }
+
+@property (nonatomic,assign) IBOutlet UITableView *playlistTable;
+@property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
+
+- (IBAction)refresh:(id)sender;
+- (IBAction)addToPlaylist:(id)sender;
+- (void)playlists:(WebRequest *)request result:(BOOL)success;
 
 @end

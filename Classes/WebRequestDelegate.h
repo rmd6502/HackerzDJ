@@ -10,7 +10,7 @@
 @class BaseRequest;
 @protocol WebRequestDelegate
 
-@required
+@optional
 - (void)operation:(BaseRequest *)request requestFinished:(BOOL)success;
 
 @end

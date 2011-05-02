@@ -37,6 +37,7 @@
 	WebRequest *req = [[WebRequest alloc]init];
     req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistsURL,@"hackerzdj"],kYoutubeBodyCommon];
     req.delegate = delegate;
+	req.selector = @selector(playlists:result:);
     
 	if ([[Reachability sharedReachability] hasConnection] || [[NSOperationQueue currentQueue] operationCount] < 2) {
 		[[NSOperationQueue currentQueue] addOperation:req];
