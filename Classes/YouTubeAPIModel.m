@@ -38,7 +38,7 @@
     req.url = [NSString stringWithFormat:@"%@?%@",[NSString stringWithFormat:kYoutubeGetPlaylistsURL,@"hackerzdj"],kYoutubeBodyCommon];
     req.delegate = delegate;
     
-	if ([[Reachability sharedReachability] hasConnection] || [[NSOperationQueue currentQueue] count] < 2) {
+	if ([[Reachability sharedReachability] hasConnection] || [[NSOperationQueue currentQueue] operationCount] < 2) {
 		[[NSOperationQueue currentQueue] addOperation:req];
 	}
     [req release];
