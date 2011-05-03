@@ -32,6 +32,11 @@
 	//[YouTubeAPIModel getPlaylistsWithDelegate:self];
 	//spinner.hidden = NO;
     playlistTable.rowHeight = 80;
+	UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(performAddAndSearch:)] autorelease];
+	addButton.style = UIBarButtonItemStyleBordered;
+	UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
+	refreshButton.style = UIBarButtonItemStyleBordered;
+	self.toolbarItems = [NSArray arrayWithObjects:refreshButton, addButton, nil];
 }
 
 

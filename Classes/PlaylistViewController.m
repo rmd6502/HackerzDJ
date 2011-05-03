@@ -109,6 +109,7 @@
 	NSDictionary *result = [playlists objectAtIndex:indexPath.row];
 	PlaylistVideoController *pvc = [[PlaylistVideoController alloc]initWithNibName:nil bundle:nil];
 	pvc.playlistId = [[result objectForKey:@"yt$playlistId"] objectForKey:@"$t"];
+	pvc.title = [[result objectForKey:@"title"] objectForKey:@"$t"];
 	[self.navigationController pushViewController:pvc animated:YES];
 	[pvc release];
 }
