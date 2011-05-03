@@ -164,7 +164,11 @@
 
 - (void)doRemoveVideo:(NSIndexPath *)indexPath {
     NSDictionary *videoData = [playlistArray objectAtIndex:indexPath.row];
-    NSString *videoID = [[[videoData objectForKey:@"media$group"] objectForKey:@"yt$videoid"] objectForKey:@"$t"];
+    NSString *videoID = [[videoData objectForKey:@"id"] objectForKey:@"$t"];
+    NSRange r = [videoID rangeOfString:@":" options:NSBackwardsSearch];
+    ++r.location;
+    r.length = [videoID length] - r.location;
+    videoID = [videoID substringWithRange:r];
     [[YouTubeAPIModel sharedAPIModel] removeVideo:videoID fromPlaylist:playlistId indexPath:indexPath delegate:self];
 }
 
