@@ -34,6 +34,7 @@
     playlistTable.rowHeight = 80;
 	UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(performAddAndSearch:)] autorelease];
 	addButton.style = UIBarButtonItemStyleBordered;
+    addButton.enabled = CAN_ADD_VIDEOS;
 	UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
 	refreshButton.style = UIBarButtonItemStyleBordered;
 	self.toolbarItems = [NSArray arrayWithObjects:refreshButton, addButton, nil];
@@ -158,6 +159,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (!CAN_REMOVE_VIDEOS) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"Not allowed to remove videos" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [av show];
+            [av release];
+        }
         [self startRemoveVideo:indexPath];
     }
 }
