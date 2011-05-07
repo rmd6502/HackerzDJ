@@ -198,6 +198,10 @@
 
 #pragma mark -
 #pragma mark Table view delegate
+- (void)tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -276,8 +280,7 @@
         if (isRefreshing) return;
         isRefreshing = YES;
     }
-    spinner.hidden = NO;
-    [[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
+    spinner.hidden = ![[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
 }
 
 - (void)videoRemoved:(WebRequest *)request result:(BOOL)success {

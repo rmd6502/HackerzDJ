@@ -105,6 +105,11 @@
 	
 }
 
+- (void)tableView:(UITableView *)tableView 
+        accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *result = [playlists objectAtIndex:indexPath.row];
 	PlaylistVideoController *pvc = [[PlaylistVideoController alloc]initWithNibName:nil bundle:nil];
