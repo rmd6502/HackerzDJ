@@ -16,6 +16,10 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (readonly) BOOL canAddVideos;
+@property (readonly) BOOL canRemoveVideos;
+@property (readonly) BOOL canAddPlaylists;
+@property (readonly) BOOL canRemovePlaylists;
 
 @end
 

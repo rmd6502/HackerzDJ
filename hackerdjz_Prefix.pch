@@ -13,4 +13,10 @@
     #import <UIKit/UIKit.h>
 #import "debugging.h"
 #import "common_configs.h"
+#import "hackerdjzAppDelegate.h"
+
+#define CAN_ADD_VIDEOS ([(hackerdjzAppDelegate *)[[UIApplication sharedApplication] delegate] canAddVideos])
+#define CAN_REMOVE_VIDEOS ([(hackerdjzAppDelegate *)[[UIApplication sharedApplication] delegate] canRemoveVideos])
+#define CAN_ADD_PLAYLISTS ([(hackerdjzAppDelegate *)[[UIApplication sharedApplication] delegate] canAddPlaylists])
+#define CAN_REMOVE_PLAYLISTS ([(hackerdjzAppDelegate *)[[UIApplication sharedApplication] delegate] canRemovePlaylists])
 #endif

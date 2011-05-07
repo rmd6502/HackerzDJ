@@ -39,6 +39,7 @@
 		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
 		9C64CB5C136C9647000C1F51 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C64CB5B136C9647000C1F51 /* no_image.png */; };
+		9C7314851375BEA1001E42CD /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C7314841375BEA1001E42CD /* Settings.bundle */; };
 		9C8FC47B136C9A1800A8DEF7 /* 5_point_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */; };
 		9C8FC47E136C9AD100A8DEF7 /* RatingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */; };
 		9C8FC484136CB7F200A8DEF7 /* categories.cat in Resources */ = {isa = PBXBuildFile; fileRef = 9C8FC483136CB7F200A8DEF7 /* categories.cat */; };
@@ -103,6 +104,7 @@
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
 		9C64CB5B136C9647000C1F51 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
+		9C7314841375BEA1001E42CD /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9C8FC47A136C9A1800A8DEF7 /* 5_point_star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_point_star.png; sourceTree = "<group>"; };
 		9C8FC47C136C9AD100A8DEF7 /* RatingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsView.h; sourceTree = "<group>"; };
 		9C8FC47D136C9AD100A8DEF7 /* RatingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsView.m; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				83AC7CA5136BB6D600875C04 /* DetailViewController.xib */,
 				83AC7CC0136EF3ED00875C04 /* PlaylistViewController.xib */,
 				8D1107310486CEB800E47090 /* hackerdjz-Info.plist */,
+				9C7314841375BEA1001E42CD /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				833CD1C6136F452B003570E8 /* phono.png in Resources */,
 				833CD1CE136F45F7003570E8 /* phono_57.png in Resources */,
 				833CD2A11370AD92003570E8 /* template.html in Resources */,
+				9C7314851375BEA1001E42CD /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
