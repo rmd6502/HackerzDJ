@@ -105,6 +105,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [cell.imageView addObserver:self forKeyPath:@"image" options:0 context:cell];
     }
     
 	// Configure the cell.
@@ -131,9 +132,17 @@
 			[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
 		}		
 	}
+    
     return cell;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    CGRect fr = [(UIImageView *)object frame];
+    fr.origin = CGPointMake(0, 0);
+    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
+    [(UIImageView *)object setFrame:fr];
+    [(UITableViewCell *)context setNeedsLayout];
+}
 
 /*
 // Override to support conditional editing of the table view.
