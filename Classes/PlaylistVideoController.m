@@ -137,10 +137,10 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    CGRect fr = [(UIImageView *)object frame];
-    fr.origin = CGPointMake(0, 0);
-    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
-    [(UIImageView *)object setFrame:fr];
+//    CGRect fr = [(UIImageView *)object frame];
+//    fr.origin = CGPointMake(0, 0);
+//    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
+//    [(UIImageView *)object setFrame:fr];
     [(UITableViewCell *)context setNeedsLayout];
 }
 
