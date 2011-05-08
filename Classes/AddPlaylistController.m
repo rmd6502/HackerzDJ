@@ -7,13 +7,11 @@
 //
 
 #import "AddPlaylistController.h"
-#import "UIScrollView+RMD.h"
 
 @implementation AddPlaylistController
 @synthesize  pDesc;
 @synthesize pTags;
 @synthesize pTitle;
-@synthesize scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,27 +40,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIScrollView *scrollView = (UIScrollView *)self.view;
     // Do any additional setup after loading the view from its nib.
     CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
-    CGContextRef myBMC = CGBitmapContextCreate(nil, self.view.bounds.size.width, self.view.bounds.size.height, 8, 4 * self.view.bounds.size.width, rgb, kCGImageAlphaPremultipliedLast);
+    CGContextRef myBMC = CGBitmapContextCreate(nil, scrollView.bounds.size.width, scrollView.bounds.size.height, 8, 4 * scrollView.bounds.size.width, rgb, kCGImageAlphaPremultipliedLast);
     CGFloat colors[] = { .5,.8,.85,1.0, .6,.75,.95,1.0 };
     CGFloat locs[] = {0.0,1.0};
     CGGradientRef grad = CGGradientCreateWithColorComponents(rgb, colors, locs, 2);
     CGContextSetFillColorWithColor(myBMC, [UIColor blueColor].CGColor);
-    CGContextFillRect(myBMC, CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height));
-    CGContextDrawRadialGradient(myBMC, grad, CGPointMake(self.view.bounds.size.width*2*.35, 
-                                                         self.view.bounds.size.height*.35), 50, 
-                                CGPointMake(self.view.bounds.size.width*2*.35, 
-                                            self.view.bounds.size.height*.35), 300, 
+    CGContextFillRect(myBMC, CGRectMake(0, 0, scrollView.bounds.size.width, scrollView.bounds.size.height));
+    CGContextDrawRadialGradient(myBMC, grad, CGPointMake(scrollView.bounds.size.width*2*.35, 
+                                                         scrollView.bounds.size.height*.35), 50, 
+                                CGPointMake(scrollView.bounds.size.width*2*.35, 
+                                            scrollView.bounds.size.height*.35), 300, 
                                 kCGGradientDrawsAfterEndLocation+kCGGradientDrawsBeforeStartLocation);
     CGImageRef img = CGBitmapContextCreateImage(myBMC);
     UIImage *uiimg = [UIImage imageWithCGImage:img];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:uiimg];
+    scrollView.backgroundColor = [UIColor colorWithPatternImage:uiimg];
     CGImageRelease(img);
     CFRelease(myBMC);
     CGColorSpaceRelease(rgb);
 
     CGGradientRelease(grad);
+    NSLog(@"scrollview %@ bounds %@", scrollView, NSStringFromCGRect(scrollView.bounds));
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -71,23 +71,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    ((UIScrollView *)self.scrollView).contentSize = self.scrollView.bounds.size;
+    ((UIScrollView *)self.view).contentSize = self.view.bounds.size;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notif {
     CGRect kbBounds;
     [[[notif userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&kbBounds];
     CGRect tbBounds = self.navigationController.toolbar.bounds;
-    CGRect fr = self.scrollView.bounds;
-    CGRect sbBounds = [[UIApplication sharedApplication] statusBarFrame];
-    fr.size.height -= kbBounds.size.height - tbBounds.size.height - sbBounds.size.height;
-    self.scrollView.bounds = fr;
-    CGPoint c = self.scrollView.center;
-    c.y -= kbBounds.size.height/2;
-    self.scrollView.center = c;
-    [self.scrollView scrollRectToVisible:lastTextField.frame animated:YES];
-    [self.scrollView flashScrollIndicators];
-    NSLog(@"show view: %@ contentSize %@ uienabled %d", self.scrollView, NSStringFromCGSize(self.scrollView.contentSize), self.scrollView.userInteractionEnabled);
+    CGRect fr = self.view.frame;
+    //CGRect sbBounds = [[UIApplication sharedApplication] statusBarFrame];
+    fr.size.height -= kbBounds.size.height - tbBounds.size.height;
+    self.view.frame = fr;
+    
+    [(UIScrollView *)self.view scrollRectToVisible:lastTextField.frame animated:YES];
+    [(UIScrollView *)self.view flashScrollIndicators];
+    NSLog(@"show view: %@ contentSize %@ uienabled %d", self.view, NSStringFromCGSize([(UIScrollView *)self.view contentSize]), self.view.userInteractionEnabled);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -110,16 +108,13 @@
     CGRect kbBounds;
     [[[notif userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&kbBounds];
     CGRect tbBounds = self.navigationController.toolbar.bounds;
-    CGRect fr = self.scrollView.bounds;
-    CGRect sbBounds = [[UIApplication sharedApplication] statusBarFrame];
-    fr.size.height += kbBounds.size.height - tbBounds.size.height - sbBounds.size.height;
-    self.scrollView.bounds = fr;
-    CGPoint c = self.scrollView.center;
-    c.y += kbBounds.size.height/2;
-    self.scrollView.center = c;
+    CGRect fr = self.view.frame;
+    //CGRect sbBounds = [[UIApplication sharedApplication] statusBarFrame];
+    fr.size.height += kbBounds.size.height - tbBounds.size.height;
+    self.view.frame = fr;
     CGPoint p = CGPointMake(0, 0);
-    self.scrollView.contentOffset = p;
-    NSLog(@"hide view: %@ contentSize %@ uienabled %d", self.scrollView, NSStringFromCGSize(self.scrollView.contentSize), self.scrollView.userInteractionEnabled);
+    ((UIScrollView *)self.view).contentOffset = p;
+    NSLog(@"hide view: %@ contentSize %@ uienabled %d", self.view, NSStringFromCGSize(((UIScrollView *)self.view).contentSize), self.view.userInteractionEnabled);
 }
 
 - (void)viewDidUnload

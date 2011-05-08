@@ -17,7 +17,6 @@
 @property (nonatomic,assign) IBOutlet UITextField *pTitle;
 @property (nonatomic,assign) IBOutlet UITextView *pDesc;
 @property (nonatomic,assign) IBOutlet UITextField *pTags;
-@property (nonatomic,assign) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)doCreatePlaylist:(id)sender;
 
