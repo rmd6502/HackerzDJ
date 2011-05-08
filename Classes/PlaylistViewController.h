@@ -16,9 +16,11 @@
 
 @property (nonatomic,assign) IBOutlet UITableView *playlistTable;
 @property (nonatomic,assign) IBOutlet UIActivityIndicatorView *spinner;
+@property (nonatomic,assign) IBOutlet UIBarButtonItem *addButton;
 
 - (IBAction)refresh:(id)sender;
-- (IBAction)addToPlaylist:(id)sender;
+- (IBAction)addPlaylist:(id)sender;
 - (void)playlists:(WebRequest *)request result:(BOOL)success;
+- (IBAction)startRemovePlaylist:(id)sender;
 
 @end

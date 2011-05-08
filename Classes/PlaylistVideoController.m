@@ -143,6 +143,7 @@
 //    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
 //    [(UIImageView *)object setFrame:fr];
     [(UITableViewCell *)context setNeedsLayout];
+    [object removeObserver:self forKeyPath:@"image"];
 }
 
 /*
@@ -163,6 +164,7 @@
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"Not allowed to remove videos" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
             [av show];
             [av release];
+            return;
         }
         [self startRemoveVideo:indexPath];
     }

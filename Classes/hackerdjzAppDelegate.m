@@ -18,7 +18,7 @@
 @synthesize canAddPlaylists;
 @synthesize canRemoveVideos;
 @synthesize canRemovePlaylists;
-
+@synthesize addButton;
 
 #pragma mark -
 #pragma mark Application lifecycle
