@@ -9,9 +9,18 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AddPlaylistController : UIViewController {
+@interface AddPlaylistController : UIViewController<UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate> {
+    UIView *lastTextField;
     
 }
 
-@property (nonatomic,assign) IBOutlet UIImageView *backDrop;
+@property (nonatomic,assign) IBOutlet UITextField *pTitle;
+@property (nonatomic,assign) IBOutlet UITextView *pDesc;
+@property (nonatomic,assign) IBOutlet UITextField *pTags;
+@property (nonatomic,assign) IBOutlet UIScrollView *scrollView;
+
+- (IBAction)doCreatePlaylist:(id)sender;
+
+- (void)keyboardDidShow:(NSNotification *)notif;
+- (void)keyboardWillHide:(NSNotification *)notif;
 @end

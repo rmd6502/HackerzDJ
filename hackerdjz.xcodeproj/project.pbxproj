@@ -38,6 +38,7 @@
 		83D8DBEE1366480F003653AF /* UIImageView+Cached.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DBED1366480F003653AF /* UIImageView+Cached.m */; };
 		83D8DD7113674D3E003653AF /* YouTubeAPIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */; };
 		9C205CC813666138008E4D05 /* entertext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C205CC713666138008E4D05 /* entertext.png */; };
+		9C2BE7A41376D1DE00DF38FF /* UIScrollView+RMD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2BE7A31376D1DD00DF38FF /* UIScrollView+RMD.m */; };
 		9C480D3B1375CB8200C6E386 /* AddPlaylistController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C480D391375CB8200C6E386 /* AddPlaylistController.m */; };
 		9C480D3C1375CB8200C6E386 /* AddPlaylistController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C480D3A1375CB8200C6E386 /* AddPlaylistController.xib */; };
 		9C64CB5C136C9647000C1F51 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C64CB5B136C9647000C1F51 /* no_image.png */; };
@@ -105,6 +106,8 @@
 		83D8DD7013674D3E003653AF /* YouTubeAPIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeAPIModel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* hackerdjz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "hackerdjz-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9C205CC713666138008E4D05 /* entertext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entertext.png; sourceTree = "<group>"; };
+		9C2BE7A21376D1DD00DF38FF /* UIScrollView+RMD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+RMD.h"; sourceTree = "<group>"; };
+		9C2BE7A31376D1DD00DF38FF /* UIScrollView+RMD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+RMD.m"; sourceTree = "<group>"; };
 		9C480D381375CB8200C6E386 /* AddPlaylistController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPlaylistController.h; sourceTree = "<group>"; };
 		9C480D391375CB8200C6E386 /* AddPlaylistController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPlaylistController.m; sourceTree = "<group>"; };
 		9C480D3A1375CB8200C6E386 /* AddPlaylistController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddPlaylistController.xib; path = Classes/AddPlaylistController.xib; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				9C8FC486136CBA3500A8DEF7 /* Category_Parser.m */,
 				83AC7CBE136EF3ED00875C04 /* PlaylistViewController.h */,
 				83AC7CBF136EF3ED00875C04 /* PlaylistViewController.m */,
+				9C2BE7A21376D1DD00DF38FF /* UIScrollView+RMD.h */,
+				9C2BE7A31376D1DD00DF38FF /* UIScrollView+RMD.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				83AC7CC1136EF3ED00875C04 /* PlaylistViewController.m in Sources */,
 				833CD29F1370ACE0003570E8 /* gordon.js in Sources */,
 				9C480D3B1375CB8200C6E386 /* AddPlaylistController.m in Sources */,
+				9C2BE7A41376D1DE00DF38FF /* UIScrollView+RMD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
