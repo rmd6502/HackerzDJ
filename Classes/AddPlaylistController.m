@@ -85,9 +85,9 @@
     CGPoint c = self.scrollView.center;
     c.y -= kbBounds.size.height/2;
     self.scrollView.center = c;
-    CGPoint p = CGPointMake(0, 140);
-    self.scrollView.contentOffset = p;
-    NSLog(@"view: %@ contentSize %@ uienabled %d", self.scrollView, NSStringFromCGSize(self.scrollView.contentSize), self.scrollView.userInteractionEnabled);
+    [self.scrollView scrollRectToVisible:lastTextField.frame animated:YES];
+    [self.scrollView flashScrollIndicators];
+    NSLog(@"show view: %@ contentSize %@ uienabled %d", self.scrollView, NSStringFromCGSize(self.scrollView.contentSize), self.scrollView.userInteractionEnabled);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -119,6 +119,7 @@
     self.scrollView.center = c;
     CGPoint p = CGPointMake(0, 0);
     self.scrollView.contentOffset = p;
+    NSLog(@"hide view: %@ contentSize %@ uienabled %d", self.scrollView, NSStringFromCGSize(self.scrollView.contentSize), self.scrollView.userInteractionEnabled);
 }
 
 - (void)viewDidUnload
