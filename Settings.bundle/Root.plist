@@ -34,7 +34,7 @@
 			<key>Key</key>
 			<string>add_playlists</string>
 			<key>Title</key>
-			<string>Allow Adding Playlists</string>
+			<string>Add Playlist</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>Key</key>
 			<string>remove_playlists</string>
 			<key>Title</key>
-			<string>Allow Removing Playlists</string>
+			<string>Del Playlist</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -54,7 +54,7 @@
 			<key>Key</key>
 			<string>add_videos</string>
 			<key>Title</key>
-			<string>Allow Adding Videos to a Playlist</string>
+			<string>Add Videos</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -64,7 +64,7 @@
 			<key>Key</key>
 			<string>remove_videos</string>
 			<key>Title</key>
-			<string>Allow Removing Videos from a Playlist</string>
+			<string>Del Videos</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

@@ -121,7 +121,7 @@
     return ret;
 }
 
-- (BOOL)addPlaylist:(NSString *)title description:(NSString *)description tags:(NSString *)tags {
+- (BOOL)addPlaylist:(NSString *)title description:(NSString *)description tags:(NSString *)tags delegate:(id<NSObject,WebRequestDelegate>)delegate{
     return NO;
 }
 
