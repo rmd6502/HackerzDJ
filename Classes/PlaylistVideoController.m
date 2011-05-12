@@ -143,7 +143,7 @@
 //    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
 //    [(UIImageView *)object setFrame:fr];
     [(UITableViewCell *)context setNeedsLayout];
-    [object removeObserver:self forKeyPath:@"image"];
+    //[object removeObserver:self forKeyPath:@"image"];
 }
 
 /*
