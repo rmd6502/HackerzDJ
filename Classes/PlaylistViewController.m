@@ -12,6 +12,7 @@
 #import "JSONKit.h"
 #import "PlaylistVideoController.h"
 #import "AddPlaylistController.h"
+#import "Reachability.h"
 
 @implementation PlaylistViewController
 @synthesize playlistTable;
@@ -31,7 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+	[self refresh:nil];
 }
 
 
@@ -39,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [(hackerdjzAppDelegate *)[[UIApplication sharedApplication]delegate] addButton].target = self;
+    [(hackerdjzAppDelegate *)[[UIApplication sharedApplication]delegate] refreshButton].target = self;
 }
 
 /*
@@ -137,8 +139,18 @@
 }
 
 - (IBAction)refresh:(id)sender {
-	spinner.hidden = NO;
-	[[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+    if ([[Reachability sharedReachability] hasConnection]) {
+        spinner.hidden = NO;
+        [[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+    } else {
+        UIAlertView *uav = [[UIAlertView alloc]initWithTitle:@"No Connection" 
+                                                     message:@"You are not connected to the Internet.  Can't load Playlists" 
+                                                    delegate:nil 
+                                           cancelButtonTitle:@"OK" 
+                                           otherButtonTitles:nil];
+        [uav show];
+        [uav release];
+    }
 }
 
 - (IBAction)addPlaylist:(id)sender {
