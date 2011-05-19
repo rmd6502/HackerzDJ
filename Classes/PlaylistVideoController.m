@@ -99,7 +99,6 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"YoutubeResult";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -112,6 +111,15 @@
 	cell.textLabel.font = [UIFont fontWithName:cell.textLabel.font.fontName size:16];
 	cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.numberOfLines = 3;
+	CGRect fr = cell.frame;
+	LOG_DEBUG(@"1cell frame %@",NSStringFromCGRect(fr));
+	fr.size.height = tableView.rowHeight;
+	LOG_DEBUG(@"2cell frame %@",NSStringFromCGRect(fr));
+	cell.frame = fr;
+	fr = cell.imageView.frame;
+	fr.size.height = tableView.rowHeight-1;
+	cell.imageView.frame = fr;
+	LOG_DEBUG(@"3cell frame %@",NSStringFromCGRect(cell.imageView.frame));
 	if ([playlistArray count] == 0) { 
 		if (indexPath.row == 2) {
 			cell.textLabel.text = @"Playlist is empty";
@@ -131,6 +139,7 @@
 			[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
 		}		
 	}
+	
     return cell;
 }
 

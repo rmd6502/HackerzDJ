@@ -48,6 +48,19 @@
 		9CCDEA9513665A1D000D1502 /* ic_menu_block.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CCDEA9413665A1D000D1502 /* ic_menu_block.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		833CD3841371EEE2003570E8 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.js";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "cp ${TARGET_NAME} ${BUILT_PRODUCTS_DIR}";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* hackerdjzAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hackerdjzAppDelegate.h; sourceTree = "<group>"; };
@@ -254,6 +267,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
 			buildRules = (
+				833CD3841371EEE2003570E8 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

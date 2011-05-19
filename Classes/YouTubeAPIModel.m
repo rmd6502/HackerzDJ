@@ -121,4 +121,12 @@
     return ret;
 }
 
+- (BOOL)addPlaylist:(NSString *)playlistName {
+	return YES;
+}
+
+- (BOOL)removePlaylist:(NSString *)playlistId {
+	return YES;
+}
+
 @end

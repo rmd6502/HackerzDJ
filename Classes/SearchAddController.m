@@ -136,6 +136,15 @@
 		cell.textLabel.textAlignment = UITextAlignmentLeft;
 	cell.textLabel.text = [[result objectForKey:@"title"] objectForKey:@"$t"];
 	cell.detailTextLabel.text = [[[[result objectForKey:@"author"] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"$t"];
+	CGRect fr = cell.frame;
+	LOG_DEBUG(@"1cell frame %@",NSStringFromCGRect(fr));
+	fr.size.height = tableView.rowHeight;
+	LOG_DEBUG(@"2cell frame %@",NSStringFromCGRect(fr));
+	cell.frame = fr;
+	fr = cell.imageView.frame;
+	fr.size.height = tableView.rowHeight-1;
+	cell.imageView.frame = fr;
+	LOG_DEBUG(@"3cell frame %@",NSStringFromCGRect(cell.imageView.frame));
 	NSString *imgUrl = [[[[result objectForKey:@"media$group"] objectForKey:@"media$thumbnail"] objectAtIndex:0] objectForKey:@"url"];
 	if (imgUrl != nil) {
 		[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
@@ -201,7 +210,9 @@
 		req.target = self;
 		req.tselector = @selector(clientAuthComplete:authKey:userData:);
 		req.userData = result;
-		[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
+		if (![[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"]) {
+			spinner.hidden = YES;
+		}
 	} else {
 		[self doAddVideo:result];
 	}
@@ -267,9 +278,8 @@
 #pragma mark UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.searchDisplayController.searchResultsTableView.rowHeight = 80;
-	spinner.hidden = NO;
     NSString *category = [[categories objectAtIndex:[picker selectedRowInComponent:0]] objectForKey:@"term"];
-	self.searchDisplayController.searchResultsTableView.hidden = ![[YouTubeAPIModel sharedAPIModel] videoSearch:[searchBar text] category:category delegate:self];
+	spinner.hidden = self.searchDisplayController.searchResultsTableView.hidden = ![[YouTubeAPIModel sharedAPIModel] videoSearch:[searchBar text] category:category delegate:self];
 }
 
 #pragma mark -
