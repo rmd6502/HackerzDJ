@@ -95,7 +95,7 @@
     for (UIImageView *vw in imageViews) {
         if ([vw observationInfo]) {
             [vw removeObserver:self forKeyPath:@"image"];
-            LOG_DEBUG(@"removed observer for %p", vw);
+            //LOG_DEBUG(@"removed observer for %p", vw);
         }
     }
     [imageViews release];
@@ -109,7 +109,7 @@
     for (UIImageView *vw in imageViews) {
         if ([vw observationInfo]) {
             [vw removeObserver:self forKeyPath:@"image"];
-            LOG_DEBUG(@"removed observer for %p", vw);
+            //LOG_DEBUG(@"removed observer for %p", vw);
         }
     }
     [imageViews release];
@@ -333,7 +333,7 @@
 - (void)videoAdded:(WebRequest *)request result:(BOOL)success {
 	LOG_DEBUG(@"video add %@", [NSString stringWithCString:(const char *)[request.urlData bytes] encoding:NSASCIIStringEncoding]);
     spinner.hidden = YES;
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)captchaRequired:(NSString *)captchaURL token:(NSString *)captchaToken userData:(NSObject *)userData {

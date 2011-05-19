@@ -197,7 +197,7 @@ static const double SecondsPerDay = (24*3600);
 }
 
 - (void)setCachedImage:(UIImage *)image__ {
-    LOG_DEBUG(@"setting image in %p", self);
+    //LOG_DEBUG(@"setting image in %p", self);
     if ([self observationInfo] == nil) {
         LOG_DEBUG(@"not setting image because observer removed");
     } else {

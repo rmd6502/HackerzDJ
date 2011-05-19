@@ -360,5 +360,13 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	[[YouTubeAPIModel sharedAPIModel] addToQueue:req description:@"Authenticate"];
 }
 
+#pragma mark - UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    LOG_DEBUG(@"showing view controller %p", viewController);
+    if (viewController == self) {
+        [self performSelector:@selector(refresh:) withObject:nil afterDelay:2.0];
+    }
+}
+
 @end
 
