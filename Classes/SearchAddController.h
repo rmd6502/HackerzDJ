@@ -14,6 +14,7 @@
 	NSArray *results;
 	NSString *authKey;
     NSArray *categories;
+    NSMutableArray *imageViews;
 }
 
 @property (nonatomic,assign) UILabel *instrs;

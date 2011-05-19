@@ -38,6 +38,7 @@
 	UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
 	refreshButton.style = UIBarButtonItemStyleBordered;
 	self.toolbarItems = [NSArray arrayWithObjects:refreshButton, addButton, nil];
+    imageViews = [[NSMutableArray alloc] init];
 }
 
 
@@ -106,6 +107,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [imageViews addObject:cell.imageView];
         [cell.imageView addObserver:self forKeyPath:@"image" options:0 context:cell];
     }
     
@@ -115,14 +117,11 @@
 	cell.textLabel.textAlignment = UITextAlignmentCenter;
     cell.textLabel.numberOfLines = 3;
 	CGRect fr = cell.frame;
-	LOG_DEBUG(@"1cell frame %@",NSStringFromCGRect(fr));
 	fr.size.height = tableView.rowHeight;
-	LOG_DEBUG(@"2cell frame %@",NSStringFromCGRect(fr));
 	cell.frame = fr;
 	fr = cell.imageView.frame;
 	fr.size.height = tableView.rowHeight-1;
 	cell.imageView.frame = fr;
-	LOG_DEBUG(@"3cell frame %@",NSStringFromCGRect(cell.imageView.frame));
 	if ([playlistArray count] == 0) { 
 		if (indexPath.row == 2) {
 			cell.textLabel.text = @"Playlist is empty";
@@ -263,6 +262,13 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+    for (UIImageView *vw in imageViews) {
+        if ([vw observationInfo]) {
+            [vw removeObserver:self forKeyPath:@"image"];
+        }
+    }
+    [imageViews release];
+    imageViews = nil;
 }
 
 
@@ -270,6 +276,13 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	[results release];
 	[playlistArray release];
 	[playlistId release];
+    for (UIImageView *vw in imageViews) {
+        if ([vw observationInfo]) {
+            [vw removeObserver:self forKeyPath:@"image"];
+        }
+    }
+
+    [imageViews release];
     [super dealloc];
 }
 

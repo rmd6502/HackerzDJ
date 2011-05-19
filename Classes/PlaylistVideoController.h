@@ -13,6 +13,7 @@
 	// This is the model
 	NSArray *playlistArray;
 	NSArray *results;
+    NSMutableArray *imageViews;
 	
     BOOL isRefreshing;
 }

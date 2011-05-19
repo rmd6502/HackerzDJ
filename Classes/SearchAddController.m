@@ -66,6 +66,8 @@
                               nil] atIndex:0];
     categories = newCategories;
     self.searchDisplayController.searchResultsTableView.rowHeight = 80;
+    
+    imageViews = [[NSMutableArray alloc] init];
     //LOG_DEBUG(@"categories %@", categories);
 }
 
@@ -90,12 +92,27 @@
     // e.g. self.myOutlet = nil;
 	[results release];
 	results = nil;
+    for (UIImageView *vw in imageViews) {
+        if ([vw observationInfo]) {
+            [vw removeObserver:self forKeyPath:@"image"];
+            LOG_DEBUG(@"removed observer for %p", vw);
+        }
+    }
+    [imageViews release];
+    imageViews = nil;
 }
 
 
 - (void)dealloc {
     [categories release];
 	[authKey release];
+    for (UIImageView *vw in imageViews) {
+        if ([vw observationInfo]) {
+            [vw removeObserver:self forKeyPath:@"image"];
+            LOG_DEBUG(@"removed observer for %p", vw);
+        }
+    }
+    [imageViews release];
     [super dealloc];
 }
 
@@ -126,6 +143,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [imageViews addObject:cell.imageView];
         [cell.imageView addObserver:self forKeyPath:@"image" options:0 context:cell];
     }
     
