@@ -24,6 +24,7 @@
 - (BOOL)addVideo:(NSString *)videoID toPlaylist:(NSString *)playlistId delegate:(id<WebRequestDelegate,NSObject>)delegate;
 - (BOOL)removeVideo:(NSString *)videoID fromPlaylist:(NSString *)playlistId indexPath:(NSIndexPath *)indexPath delegate:(id<WebRequestDelegate,NSObject>)delegate;
 - (BOOL)clientAuthWithDelegate:(id<WebRequestDelegate,NSObject>)delegate;
-- (BOOL)addPlaylist:(NSString *)playlistName;
-- (BOOL)removePlaylist:(NSString *)playlistId;
+- (BOOL)addPlaylist:(NSString *)title description:(NSString *)description tags:(NSString *)tags delegate:(id<NSObject,WebRequestDelegate>)delegate;
+- (BOOL)removePlaylist:(NSString *)playlistId delegate:(id<NSObject,WebRequestDelegate>)delegate;
+
 @end

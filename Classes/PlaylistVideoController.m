@@ -34,6 +34,7 @@
     playlistTable.rowHeight = 80;
 	UIBarButtonItem *addButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(performAddAndSearch:)] autorelease];
 	addButton.style = UIBarButtonItemStyleBordered;
+    addButton.enabled = CAN_ADD_VIDEOS;
 	UIBarButtonItem *refreshButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)] autorelease];
 	refreshButton.style = UIBarButtonItemStyleBordered;
 	self.toolbarItems = [NSArray arrayWithObjects:refreshButton, addButton, nil];
@@ -99,11 +100,13 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"YoutubeResult";
+    
+    static NSString *CellIdentifier = @"PlaylistVideo";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [cell.imageView addObserver:self forKeyPath:@"image" options:0 context:cell];
     }
     
 	// Configure the cell.
@@ -139,10 +142,18 @@
 			[cell.imageView loadFromURL:[NSURL URLWithString:imgUrl]];
 		}		
 	}
-	
+
     return cell;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//    CGRect fr = [(UIImageView *)object frame];
+//    fr.origin = CGPointMake(0, 0);
+//    fr.size.height = fr.size.width = playlistTable.rowHeight - 1;
+//    [(UIImageView *)object setFrame:fr];
+    [(UITableViewCell *)context setNeedsLayout];
+    //[object removeObserver:self forKeyPath:@"image"];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -158,6 +169,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (!CAN_REMOVE_VIDEOS) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"Not allowed to remove videos" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [av show];
+            [av release];
+            return;
+        }
         [self startRemoveVideo:indexPath];
     }
 }
@@ -207,6 +224,10 @@
 
 #pragma mark -
 #pragma mark Table view delegate
+- (void)tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -285,8 +306,7 @@
         if (isRefreshing) return;
         isRefreshing = YES;
     }
-    spinner.hidden = NO;
-    [[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
+    spinner.hidden = ![[YouTubeAPIModel sharedAPIModel] getContentsOfPlaylist:playlistId delegate:self];
 }
 
 - (void)videoRemoved:(WebRequest *)request result:(BOOL)success {

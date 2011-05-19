@@ -201,6 +201,10 @@ static const double SecondsPerDay = (24*3600);
 	[image__ release];
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
+
 // Methods to load and cache an image from a URL on a separate thread
 -(void)loadFromURL:(NSURL *)url
 {

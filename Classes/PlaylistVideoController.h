@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WebRequestDelegate.h"
 
-@interface PlaylistVideoController : UIViewController<WebRequestDelegate,UINavigationControllerDelegate> {
+@interface PlaylistVideoController : UIViewController<WebRequestDelegate,UINavigationControllerDelegate,UITableViewDelegate> {
 	// This is the model
 	NSArray *playlistArray;
 	NSArray *results;

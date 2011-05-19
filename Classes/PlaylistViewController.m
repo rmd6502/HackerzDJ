@@ -11,10 +11,13 @@
 #import "YouTubeAPIModel.h"
 #import "JSONKit.h"
 #import "PlaylistVideoController.h"
+#import "AddPlaylistController.h"
+#import "Reachability.h"
 
 @implementation PlaylistViewController
 @synthesize playlistTable;
 @synthesize spinner;
+@synthesize addButton;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -29,15 +32,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+	[self refresh:nil];
 }
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [(hackerdjzAppDelegate *)[[UIApplication sharedApplication]delegate] addButton].target = self;
+    [(hackerdjzAppDelegate *)[[UIApplication sharedApplication]delegate] refreshButton].target = self;
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -56,6 +60,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -74,7 +79,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"PlaylistCell";
+	static NSString *CellIdentifier = @"PlaylistViewCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -105,6 +110,11 @@
 	
 }
 
+- (void)tableView:(UITableView *)tableView 
+        accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *result = [playlists objectAtIndex:indexPath.row];
 	PlaylistVideoController *pvc = [[PlaylistVideoController alloc]initWithNibName:nil bundle:nil];
@@ -114,13 +124,46 @@
 	[pvc release];
 }
 
-- (IBAction)refresh:(id)sender {
-	spinner.hidden = NO;
-	[[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (!CAN_REMOVE_PLAYLISTS) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"Not allowed to remove playlists" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [av show];
+            [av release];
+            return;
+        }
+        [self startRemovePlaylist:indexPath];
+    }
 }
 
-- (IBAction)addToPlaylist:(id)sender {
-	LOG_DEBUG(@"refresh playlists");
+- (IBAction)refresh:(id)sender {
+    if ([[Reachability sharedReachability] hasConnection]) {
+        spinner.hidden = NO;
+        [[YouTubeAPIModel sharedAPIModel] getPlaylistsWithDelegate:self];
+    } else {
+        UIAlertView *uav = [[UIAlertView alloc]initWithTitle:@"No Connection" 
+                                                     message:@"You are not connected to the Internet.  Can't load Playlists" 
+                                                    delegate:nil 
+                                           cancelButtonTitle:@"OK" 
+                                           otherButtonTitles:nil];
+        [uav show];
+        [uav release];
+    }
+}
+
+- (IBAction)addPlaylist:(id)sender {
+	LOG_DEBUG(@"add playlists");
+    if (!CAN_ADD_PLAYLISTS) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Not Allowed" message:@"Not allowed to add playlists" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [av show];
+        [av release];
+        return;
+    }
+    AddPlaylistController *apc = [[AddPlaylistController alloc]initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:apc animated:YES];
+    [apc release];
 }
 
 - (void)playlists:(WebRequest *)request result:(BOOL)success {
@@ -139,6 +182,10 @@
 	}];
 	[playlists retain];
 	[playlistTable reloadData];
+}
+
+- (IBAction)startRemovePlaylist:(id)sender {
+    
 }
 
 @end

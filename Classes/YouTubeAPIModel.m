@@ -121,12 +121,47 @@
     return ret;
 }
 
-- (BOOL)addPlaylist:(NSString *)playlistName {
-	return YES;
+- (BOOL)addPlaylist:(NSString *)title description:(NSString *)description tags:(NSString *)tags delegate:(id<NSObject,WebRequestDelegate>)delegate{
+    BOOL ret = YES;
+	
+	WebRequest *req = [[WebRequest alloc]init];
+	req.delegate = delegate;
+	req.selector = @selector(videoRemoved:result:);
+	req.url = [NSString stringWithFormat:@"%@?%@", [NSString stringWithFormat:kYoutubeAddDelPlaylistsURL, kClientAuthUsername], kYoutubeBodyCommon];
+	req.httpMethod = @"POST";
+	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
+				   [NSString stringWithFormat:@"GoogleLogin auth=\"%@\"", authKey], @"Authorization",
+				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
+				   @"application/atom+xml", @"Content-Type",
+				   @"2", @"GData-Version",
+                   @"gdata.youtube.com",@"Host",
+				   nil];
+    req.httpBody = [[NSString stringWithFormat:kYoutubePlaylistEntryAtom, title, description] dataUsingEncoding:NSASCIIStringEncoding];
+    //req.userData = indexPath;
+	
+	ret = [self addToQueue:req description:@"Add Playlist"];
+	return ret;
 }
 
-- (BOOL)removePlaylist:(NSString *)playlistId {
-	return YES;
+- (BOOL)removePlaylist:(NSString *)playlistId delegate:(id<NSObject,WebRequestDelegate>)delegate {
+    BOOL ret = YES;
+	
+	WebRequest *req = [[WebRequest alloc]init];
+	req.delegate = delegate;
+	req.selector = @selector(videoRemoved:result:);
+	req.url = [NSString stringWithFormat:@"%@/%@?%@", [NSString stringWithFormat:kYoutubeAddDelPlaylistsURL, kClientAuthUsername], playlistId, kYoutubeBodyCommon];
+	req.httpMethod = @"DELETE";
+	req.headers = [NSDictionary dictionaryWithObjectsAndKeys:
+				   [NSString stringWithFormat:@"GoogleLogin auth=\"%@\"", authKey], @"Authorization",
+				   [NSString stringWithFormat:@"key=%@", kYoutubeDevKey], @"X-GData-Key",
+				   @"application/atom+xml", @"Content-Type",
+				   @"2", @"GData-Version",
+                   @"gdata.youtube.com",@"Host",
+				   nil];
+    //req.userData = indexPath;
+	
+	ret = [self addToQueue:req description:@"Remove Playlist"];
+	return ret;
 }
 
 @end

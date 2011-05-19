@@ -14,7 +14,12 @@
 
 @synthesize window;
 @synthesize navigationController;
-
+@synthesize canAddVideos;
+@synthesize canAddPlaylists;
+@synthesize canRemoveVideos;
+@synthesize canRemovePlaylists;
+@synthesize addButton;
+@synthesize refreshButton;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -24,6 +29,12 @@
     // Override point for customization after application launch.
     (void)[Reachability sharedReachability];
 	
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    canRemovePlaylists = [defaults boolForKey:@"remove_playlists"];
+    canAddVideos = [defaults boolForKey:@"add_videos"];
+    canAddPlaylists = [defaults boolForKey:@"add_playlists"];
+    canRemoveVideos = [defaults boolForKey:@"remove_videos"];
+                          
     // Add the navigation controller's view to the window and display.
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
