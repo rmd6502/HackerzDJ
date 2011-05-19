@@ -7,6 +7,7 @@
 //
 
 #import <objc/objc.h>
+#import <objc/message.h>
 #import "YoutubeClientAuth.h"
 
 
